@@ -17,10 +17,16 @@
         <label for="summonerName">
             Podaj nazwe<input type="text" id="summoner-name">
         </label>
-            <input type="button" value="sprawdz" id="summoner-name-button" onclick="getUserId()">
+        <select name="Region" id="region">
+            <option value="EUNE">EUNE</option>
+            <option value="EUW">EUW</option>
+            <option value="NA">NA</option>
+            <option value="RU">RU</option>
+        </select>
+        <input type="button" value="sprawdz" id="summoner-name-button" onclick="getUserId()">
         
-            <p id="wynik"></p>
-            <img src=" " id="rank-emblem">
+        <p id="wynik"></p>
+        <img src=" " id="rank-emblem">
     </section>
             
     <footer>
