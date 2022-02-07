@@ -6,16 +6,12 @@
     padding: 0;
 }
 
-div{
-    border: 1px solid $black;
-    @include cos;
-    p{
-        padding: 0;
-        &::after{
+body{
+    background: black;
+    color: white;
+}
 
-        }
-    }
-    &:hover{
-
-    }
+section{
+    height: 100vh;
+    @include flex-center;
 }

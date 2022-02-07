@@ -4,10 +4,14 @@
   padding: 0;
 }
 
-div {
-  border: 1px solid black;
-  display: flex;
+body {
+  background: black;
+  color: white;
 }
-div p {
-  padding: 0;
+
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
