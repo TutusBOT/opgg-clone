@@ -1,4 +1,4 @@
-
+const rankEmblemImg = document.getElementById("rank-emblem")
 
 
 async function getUserId(){
@@ -16,8 +16,10 @@ async function getUserId(){
     console.log("basic info",basicInfo);
     console.log("match data", matchData);
     console.log("rank", rankDisplayer);
-    document.getElementById('wynik').innerHTML = results.summonerLevel;
-    
+    document.getElementById('wynik').innerHTML = rankDisplayer[0];
+    const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1])
+    rankEmblemImg.src = rankEmblemToDisplay
+    console.log("img src", rankEmblemToDisplay);
 }
 
 async function getRank(userId){
@@ -39,13 +41,20 @@ async function getMatchData(matchId){
 }
 
 async function displayRank(rankData){
-    let rankToDisplay
+    let rankToDisplay = []
     const rank = await rankData
     for(i=0; i<rank.length; i++){
         if(rank[i].queueType == "RANKED_SOLO_5x5"){
-            rankToDisplay = rank[i].tier + " " + rank[i].rank
+            rankToDisplay[0] = rank[i].tier + " " + rank[i].rank + " " + rank[i].leaguePoints + "LP"
+            rankToDisplay[1] = rank[i].tier
             return rankToDisplay
         }
     }
     return "no solo/duo rank"
+}
+
+async function displayRankEmblem(rank){
+    const rankEmblem = await rank
+    let rankEmblemSrc = "/images/ranked-emblems/" + rankEmblem + ".png"
+    return rankEmblemSrc
 }

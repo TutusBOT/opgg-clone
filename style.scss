@@ -17,4 +17,5 @@ body{
 section{
     height: 100vh;
     @include flex-center;
+    flex-direction: column;
 }
