@@ -1,17 +1,17 @@
+var summoner = document.getElementById('summonerName').value
 
 
-
-getUserId()
 async function getUserId(){
-    const response = await fetch("https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/TutusBOT?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    const response = await fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key=RGAPI-2b678016-90bb-4aa0-9f6b-6b90d55ef73b")
     const results = await response.json()
     const basicInfo = await getData(results.id)
     console.log(results);
+    document.getElementById('wynik').innerHTML = results.summonerLevel;
 }
 
 async function getData(userId){
     console.log(userId);
-    const response = await fetch("https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    const response = await fetch("https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-2b678016-90bb-4aa0-9f6b-6b90d55ef73b")
     const results = await response.json()
     console.log(results);
 }
