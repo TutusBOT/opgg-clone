@@ -9,16 +9,16 @@ async function getUserId(){
     const basicInfo = await getData(results.id)
     
     const matchList = await getMatchId(results.puuid)
-    console.log(matchList.json());
-    console.log(results);
+    console.log("list of matches id", matchList.json());
+    console.log("user id", results);
+    console.log("basic info",basicInfo);
     document.getElementById('wynik').innerHTML = results.summonerLevel;
 }
 
 async function getData(userId){
-    console.log(userId);
     const response = await fetch("https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
     const results = await response.json()
-    console.log(results);
+    return results
 }
 
 async function getMatchId(puuid){
