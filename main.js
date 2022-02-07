@@ -9,7 +9,7 @@ async function getUserId(){
     const basicInfo = await getData(results.id)
     
     const matchList = await getMatchId(results.puuid)
-    console.log("list of matches id", matchList.json());
+    console.log("list of matches id", matchList);
     console.log("user id", results);
     console.log("basic info",basicInfo);
     document.getElementById('wynik').innerHTML = results.summonerLevel;
@@ -23,5 +23,5 @@ async function getData(userId){
 
 async function getMatchId(puuid){
     const response = await fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=20&api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
-    return response
+    return response.json()
 }
