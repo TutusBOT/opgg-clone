@@ -1,5 +1,7 @@
 const rankEmblemImg = document.getElementById("rank-emblem")
-
+const winsParagraph = document.getElementById("wins")
+const lossesParagraph = document.getElementById("losses")
+const totalPlayedParagraph = document.getElementById("total-matches")
 
 async function getUserId(){
     let region = document.getElementById("region").value
@@ -25,11 +27,12 @@ async function getUserId(){
     console.log("basic info",basicInfo);
     console.log("match data", matchData);
     console.log("rank", rankDisplayer);
-    document.getElementById('wynik').innerHTML = rankDisplayer[0];
+    document.getElementById('rank').innerText = rankDisplayer[0];
 
-    const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1])
+    const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
+    displayTotaMatchesPlayed(rankDisplayer[2])
+
     rankEmblemImg.src = rankEmblemToDisplay
-    console.log("img src", rankEmblemToDisplay);
 }
     
 
@@ -58,6 +61,7 @@ async function displayRank(rankData){
         if(rank[i].queueType == "RANKED_SOLO_5x5"){
             rankToDisplay[0] = rank[i].tier + " " + rank[i].rank + " " + rank[i].leaguePoints + "LP"
             rankToDisplay[1] = rank[i].tier
+            rankToDisplay[2] = rank[i].wins+";"+rank[i].losses
             return rankToDisplay
         }
     }
@@ -86,7 +90,14 @@ function determineRegion(region){
     }
     else if(region == "RU"){
         api[0] = "ru"
-        api[1] = ""
+        api[1] = "europe"
     }
     return api
+}
+
+function displayTotaMatchesPlayed(matches){
+    let data = matches.split(";")
+    winsParagraph.innerText = data[0]
+    lossesParagraph.innerText = data[1]
+    totalPlayedParagraph.innerText = parseInt(data[0]) + parseInt(data[1])
 }
