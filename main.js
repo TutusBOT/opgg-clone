@@ -34,7 +34,7 @@ async function getUserId(){
 
     const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
     const userKDA = await displayMatchUserKDA(matchData, results.puuid)
-    console.log("kda", userKDA);
+    // console.log("kda", userKDA); 
     displayTotaMatchesPlayed(rankDisplayer[2])
 
     rankEmblemImg.src = rankEmblemToDisplay
@@ -83,8 +83,8 @@ function displayMatchData(matchesArray){
 }
 
 function displayMatchUserKDA(matchesArray, userPuuid){
-    matchesArray.forEach(match =>{
-        let sth = match.info.participants.forEach(participant =>{
+    let x = matchesArray.map(match =>{
+        let whereKDA = match.info.participants.map(participant =>{
             if(participant.puuid == userPuuid && participant.deaths != 0){
                 console.log((parseFloat(participant.assists) + parseFloat(participant.kills))/parseFloat(participant.deaths), participant.kills, participant.deaths, participant.assists);
                 return participant.kills
@@ -93,8 +93,13 @@ function displayMatchUserKDA(matchesArray, userPuuid){
                 console.log("perfect kda");
             }
         })
-        
+        for(i=0; i<whereKDA.length; i++){
+            if(whereKDA[i] != undefined){
+                return whereKDA[i]
+            }
+        }
     })
+    console.log("kdas arrays", x);
 }
 
 async function displayRank(rankData){
