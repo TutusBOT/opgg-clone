@@ -2,6 +2,7 @@ const rankEmblemImg = document.getElementById("rank-emblem")
 const winsParagraph = document.getElementById("wins")
 const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
+const listOfMatches = document.getElementById("list-of-matches")
 
 async function getUserId(){
     let region = document.getElementById("region").value
@@ -9,7 +10,7 @@ async function getUserId(){
     const apiRegion = determineRegion(region)
 
 
-    const response = await fetch("https://"+ apiRegion[0] +".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    const response = await fetch("https://"+ apiRegion[0] +".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
 
     if(response.ok != true){
         console.log("Error");
@@ -21,11 +22,12 @@ async function getUserId(){
     const rankDisplayer = await displayRank(basicInfo)
     const matchList = await getMatchId(results.puuid, apiRegion[1])
 
-    const matchData = await getMatchData(matchList[0], apiRegion[1])
+    const matchData = await getMatchData(matchList, apiRegion[1])
+    displayMatchData(matchData)
     console.log("list of matches id", matchList);
     console.log("user id", results);
     console.log("basic info",basicInfo);
-    console.log("match data", matchData);
+    console.log("matches in array", matchData);
     console.log("rank", rankDisplayer);
     document.getElementById('rank').innerText = rankDisplayer[0];
 
@@ -37,21 +39,40 @@ async function getUserId(){
     
 
 async function getRank(userId, apiRegion){
-    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
     const results = await response.json()
     return results
 }
 
 async function getMatchId(puuid, apiRegion){
-    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=20&api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=10&api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
     const results = await response.json()
     return results
 }
 
 async function getMatchData(matchId, apiRegion){
-    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/"+matchId+"?api_key=RGAPI-29a95ea5-86a5-426d-8b6b-327429bd9b59")
+    let response = []
+    response = await matchId.map(element => {
+        let matchesArray = processMatchData("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/"+element+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
+        return matchesArray
+    });
+    const result = await Promise.all(response)
+    return result
+}
+
+async function processMatchData(fetchLink){
+    const response = await fetch(fetchLink)
     const results = await response.json()
     return results
+}
+
+function displayMatchData(matchesArray){
+    listOfMatches.innerHTML = ""
+    matchesArray.forEach(match => {
+        let matchinfo = match.info
+        console.log("match", match)
+        listOfMatches.innerHTML += "<li>" + matchinfo.gameMode + " " + matchinfo.participants[0].win + "</li>"
+    });
 }
 
 async function displayRank(rankData){
@@ -97,7 +118,11 @@ function determineRegion(region){
 
 function displayTotaMatchesPlayed(matches){
     let data = matches.split(";")
+    let total = parseInt(data[0]) + parseInt(data[1])
     winsParagraph.innerText = "Wins: " + data[0]
     lossesParagraph.innerText = "Losses: " + data[1]
-    totalPlayedParagraph.innerText = "Total: " + parseInt(data[0]) + parseInt(data[1])
+    totalPlayedParagraph.innerText = "Total: " + total
 }
+
+
+
