@@ -97,7 +97,7 @@ function determineRegion(region){
 
 function displayTotaMatchesPlayed(matches){
     let data = matches.split(";")
-    winsParagraph.innerText = data[0]
-    lossesParagraph.innerText = data[1]
-    totalPlayedParagraph.innerText = parseInt(data[0]) + parseInt(data[1])
+    winsParagraph.innerText = "Wins: " + data[0]
+    lossesParagraph.innerText = "Losses: " + data[1]
+    totalPlayedParagraph.innerText = "Total: " + parseInt(data[0]) + parseInt(data[1])
 }
