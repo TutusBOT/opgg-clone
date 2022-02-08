@@ -7,6 +7,7 @@ const listOfMatches = document.getElementById("list-of-matches")
 async function getUserId(){
     let region = document.getElementById("region").value
     let summoner = document.getElementById('summoner-name').value
+    listOfMatches.innerHTML = ""
     const apiRegion = determineRegion(region)
 
 
@@ -32,6 +33,8 @@ async function getUserId(){
     document.getElementById('rank').innerText = rankDisplayer[0];
 
     const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
+    const userKDA = await displayMatchUserKDA(matchData, results.puuid)
+    console.log("kda", userKDA);
     displayTotaMatchesPlayed(rankDisplayer[2])
 
     rankEmblemImg.src = rankEmblemToDisplay
@@ -67,12 +70,31 @@ async function processMatchData(fetchLink){
 }
 
 function displayMatchData(matchesArray){
-    listOfMatches.innerHTML = ""
+    
     matchesArray.forEach(match => {
         let matchinfo = match.info
         console.log("match", match)
-        listOfMatches.innerHTML += "<li>" + matchinfo.gameMode + " " + matchinfo.participants[0].win + "</li>"
+        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + " " + matchinfo.participants[0].win + "<p></li>"
     });
+    for(i=0; i<matchesArray.length; i++){
+        let listOfMatchesId = listOfMatches.childNodes[i].classList
+        listOfMatchesId.add("match" + i)
+    }
+}
+
+function displayMatchUserKDA(matchesArray, userPuuid){
+    matchesArray.forEach(match =>{
+        let sth = match.info.participants.forEach(participant =>{
+            if(participant.puuid == userPuuid && participant.deaths != 0){
+                console.log((parseFloat(participant.assists) + parseFloat(participant.kills))/parseFloat(participant.deaths), participant.kills, participant.deaths, participant.assists);
+                return participant.kills
+            }
+            else if(participant.puuid == userPuuid){
+                console.log("perfect kda");
+            }
+        })
+        
+    })
 }
 
 async function displayRank(rankData){
