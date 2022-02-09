@@ -25,7 +25,13 @@ section {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: white;
+  background-color: #ededed;
+  width: 50%;
+  height: 1.5em;
   font-family: "Quicksand", sans-serif;
   font-size: 2rem;
+}
+.search-bar .search-bar-region {
+  border: none;
+  outline: none;
 }/*# sourceMappingURL=style.css.map */

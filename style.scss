@@ -8,8 +8,7 @@
 }
 
 body{
-    background: linear-gradient(#1b1759, 
-    #211759);
+    background: linear-gradient($background-gradient-lighter, $background-gradient-darker);
     color: white;
     input{
         color: black;
@@ -25,7 +24,12 @@ section{
 .search-bar{
     @include flex-center;
     border-radius: 10px;
-    background-color: white;
+    background-color: $white;
+    width: 50%;
+    height: 1.5em;
     font-family: $font-main;
     font-size: 2rem;
+    .search-bar-region{
+        @include button-nooutline;
+    }
 }

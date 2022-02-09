@@ -33,7 +33,7 @@ async function getUserId(){
     document.getElementById('rank').innerText = rankDisplayer[0];
 
     const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
-    const userKDA = await displayMatchUserKDA(matchData, results.puuid)
+    const userKDA = displayMatchUserKDA(matchData, results.puuid)
     console.log("kda", userKDA); 
     displayTotaMatchesPlayed(rankDisplayer[2])
 

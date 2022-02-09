@@ -17,19 +17,19 @@
     </header>
 
     <section>
-        <div class="search-bar">
+        <form class="search-bar" onsubmit="getUserId(); return false">
             
-            <select name="Region" id="region">
+            <select name="Region" id="region" class="search-bar-region">
                 <option value="EUNE">EUNE</option>
                 <option value="EUW">EUW</option>
                 <option value="NA">NA</option>
                 <option value="RU">RU</option>
             </select>
-            <label for="summoner-name">
-                <input type="text" id="summoner-name" placeholder="Search a summoner">
-            </label>
-            <input type="button" value="sprawdz" id="summoner-name-button" onclick="getUserId()">
-        </div>
+
+            <input type="text" id="summoner-name" class="search-bar-summonername" placeholder="Search a summoner">
+
+            <input type="button" value="sprawdz" id="summoner-name-button" class="search-bar-button" onclick="getUserId()">
+        </form>
             
         <p id="rank"></p>
         <div class="matches-played">
