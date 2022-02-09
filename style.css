@@ -59,4 +59,9 @@ section {
 
 .list-of-matches {
   list-style-type: none;
+}
+.list-of-matches li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
