@@ -1,5 +1,6 @@
 @use "utilities/colors" as *;
 @use "utilities/mixins" as *;
+@use "utilities/fonts" as *;
 *{
     box-sizing: border-box;
     margin: 0;
@@ -7,7 +8,8 @@
 }
 
 body{
-    background: black;
+    background: linear-gradient(#1b1759, 
+    #211759);
     color: white;
     input{
         color: black;
@@ -18,4 +20,12 @@ section{
     height: 100vh;
     @include flex-center;
     flex-direction: column;
+}
+
+.search-bar{
+    @include flex-center;
+    border-radius: 10px;
+    background-color: white;
+    font-family: $font-main;
+    font-size: 2rem;
 }

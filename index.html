@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <title>Op GG clone</title>
 </head>
 <body>
@@ -14,16 +17,20 @@
     </header>
 
     <section>
-        <label for="summoner-name">
-            Podaj nazwe<input type="text" id="summoner-name">
-        </label>
-        <select name="Region" id="region">
-            <option value="EUNE">EUNE</option>
-            <option value="EUW">EUW</option>
-            <option value="NA">NA</option>
-            <option value="RU">RU</option>
-        </select>
-        <input type="button" value="sprawdz" id="summoner-name-button" onclick="getUserId()">
+        <div class="search-bar">
+            
+            <select name="Region" id="region">
+                <option value="EUNE">EUNE</option>
+                <option value="EUW">EUW</option>
+                <option value="NA">NA</option>
+                <option value="RU">RU</option>
+            </select>
+            <label for="summoner-name">
+                <input type="text" id="summoner-name" placeholder="Search a summoner">
+            </label>
+            <input type="button" value="sprawdz" id="summoner-name-button" onclick="getUserId()">
+        </div>
+            
         <p id="rank"></p>
         <div class="matches-played">
             <p id="wins"></p>
