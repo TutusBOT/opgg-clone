@@ -99,10 +99,10 @@ function displayMatchData(matchesArray){
         }
         
             if(matchinfo[i].participants[i].win == true){
-                listOfMatches.innerHTML += "<span style='color:blue;'>Victory<span>"
+                listOfMatches.childNodes[i].innerHTML += "<span style='color:blue;'>Victory<span>"
             }
             else if(matchinfo[i].participants[i].win == false) {
-                listOfMatches.innerHTML += "<span style='color:red;'>Lose<span>"
+                listOfMatches.childNodes[i].innerHTML += "<span style='color:red;'>Lose<span>"
             }
 
            if(i==4){
