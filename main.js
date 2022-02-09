@@ -3,7 +3,7 @@ const winsParagraph = document.getElementById("wins")
 const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
-
+const APIKEY = "RGAPI-c75b5e63-7d94-4084-8802-7a12cacd41e3"
 async function getUserId(){
     let region = document.getElementById("region").value
     let summoner = document.getElementById('summoner-name').value
@@ -11,7 +11,7 @@ async function getUserId(){
     const apiRegion = determineRegion(region)
 
 
-    const response = await fetch("https://"+ apiRegion[0] +".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
+    const response = await fetch("https://"+ apiRegion[0] +".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key="+APIKEY)
 
     if(response.ok != true){
         console.log("Error");
@@ -34,7 +34,7 @@ async function getUserId(){
 
     const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
     const userKDA = await displayMatchUserKDA(matchData, results.puuid)
-    // console.log("kda", userKDA); 
+    console.log("kda", userKDA); 
     displayTotaMatchesPlayed(rankDisplayer[2])
 
     rankEmblemImg.src = rankEmblemToDisplay
@@ -42,13 +42,13 @@ async function getUserId(){
     
 
 async function getRank(userId, apiRegion){
-    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
+    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key="+APIKEY)
     const results = await response.json()
     return results
 }
 
 async function getMatchId(puuid, apiRegion){
-    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=10&api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
+    const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=10&api_key="+APIKEY)
     const results = await response.json()
     return results
 }
@@ -56,7 +56,7 @@ async function getMatchId(puuid, apiRegion){
 async function getMatchData(matchId, apiRegion){
     let response = []
     response = await matchId.map(element => {
-        let matchesArray = processMatchData("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/"+element+"?api_key=RGAPI-3ec2c0ec-6e36-4d12-a3b7-8924ff0b316f")
+        let matchesArray = processMatchData("https://"+ apiRegion +".api.riotgames.com/lol/match/v5/matches/"+element+"?api_key="+APIKEY)
         return matchesArray
     });
     const result = await Promise.all(response)
