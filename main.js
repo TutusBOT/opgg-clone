@@ -90,7 +90,7 @@ function displayMatchUserKDA(matchesArray, userPuuid){
                 return participant.kills
             }
             else if(participant.puuid == userPuuid){
-                console.log("perfect kda");
+                return "perfect kda"
             }
         })
         for(i=0; i<whereKDA.length; i++){
