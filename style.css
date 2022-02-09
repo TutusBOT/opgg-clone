@@ -24,6 +24,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-inline: 0.5rem;
   border-radius: 10px;
   background-color: #ededed;
   width: 50%;
@@ -34,4 +35,19 @@ section {
 .search-bar .search-bar-region {
   border: none;
   outline: none;
+  border-right: 1px solid grey;
+  height: 100%;
+}
+.search-bar .search-bar-summonername {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  width: 100%;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+}
+.search-bar .search-bar-button {
+  border: none;
+  outline: none;
+  height: 100%;
 }/*# sourceMappingURL=style.css.map */

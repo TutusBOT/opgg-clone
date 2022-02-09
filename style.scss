@@ -25,6 +25,7 @@ section{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-inline: .5rem;
     border-radius: 10px;
     background-color: $white;
     width: 50%;
@@ -33,5 +34,17 @@ section{
     font-size: 2rem;
     .search-bar-region{
         @include button-nooutline;
+        border-right: 1px solid grey;
+        height: 100%;
+    }
+    .search-bar-summonername{
+        @include button-nooutline;
+        background-color: inherit;
+        width: 100%;
+        padding-inline-start: .5rem;
+    }
+    .search-bar-button{
+        @include button-nooutline;
+        height: 100%;
     }
 }
