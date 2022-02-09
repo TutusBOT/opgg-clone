@@ -74,7 +74,14 @@ function displayMatchData(matchesArray){
     matchesArray.forEach(match => {
         let matchinfo = match.info
         console.log("match", match)
-        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + " " + matchinfo.participants[0].win + "<p></li>"
+        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode;
+        for(a=0; a<10; a++){
+            listOfMatches.innerHTML +=  matchinfo.participants[a].summonerName + "";
+            if(matchinfo.participants[a].win == true){
+                listOfMatches.innerHTML += "<p style='color:blue;'>Victory<p>"
+            }
+        }
+        listOfMatches.innerHTML += "<p></li>";
     });
     for(i=0; i<matchesArray.length; i++){
         let listOfMatchesId = listOfMatches.childNodes[i].classList
