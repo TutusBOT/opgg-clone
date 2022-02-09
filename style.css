@@ -28,15 +28,19 @@ section {
   border-radius: 10px;
   background-color: #ededed;
   width: 50%;
+  min-width: 300px;
   height: 1.5em;
-  font-family: "Quicksand", sans-serif;
   font-size: 2rem;
+}
+.search-bar * {
+  font-family: "Quicksand", sans-serif;
 }
 .search-bar .search-bar-region {
   border: none;
   outline: none;
   border-right: 1px solid grey;
   height: 100%;
+  cursor: pointer;
 }
 .search-bar .search-bar-summonername {
   border: none;
@@ -49,5 +53,10 @@ section {
 .search-bar .search-bar-button {
   border: none;
   outline: none;
+  cursor: pointer;
   height: 100%;
+}
+
+.list-of-matches {
+  list-style-type: none;
 }/*# sourceMappingURL=style.css.map */
