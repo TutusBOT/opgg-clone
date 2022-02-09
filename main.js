@@ -83,7 +83,7 @@ function displayMatchData(matchesArray){
 }
 
 function displayMatchUserKDA(matchesArray, userPuuid){
-    let x = matchesArray.map(match =>{
+    let kdaArrays = matchesArray.map(match =>{
         let whereKDA = match.info.participants.map(participant =>{
             if(participant.puuid == userPuuid && participant.deaths != 0){
                 console.log((parseFloat(participant.assists) + parseFloat(participant.kills))/parseFloat(participant.deaths), participant.kills, participant.deaths, participant.assists);
@@ -99,7 +99,7 @@ function displayMatchUserKDA(matchesArray, userPuuid){
             }
         }
     })
-    console.log("kdas arrays", x);
+    console.log("kdas arrays", kdaArrays);
 }
 
 async function displayRank(rankData){
