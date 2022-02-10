@@ -133,7 +133,7 @@ async function displayRank(rankData){
 
 async function displayRankEmblem(rank){
     const rankEmblem = await rank
-    let rankEmblemSrc = "/images/ranked-emblems/" + rankEmblem + ".png"
+    let rankEmblemSrc = "images/ranked-emblems/" + rankEmblem + ".png"
     return rankEmblemSrc
 }
 
