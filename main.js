@@ -4,6 +4,8 @@ const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
 const APIKEY = "RGAPI-c75b5e63-7d94-4084-8802-7a12cacd41e3"
+
+
 async function getUserId(){
     let region = document.getElementById("region").value
     let summoner = document.getElementById('summoner-name').value
@@ -23,8 +25,10 @@ async function getUserId(){
     const rankDisplayer = await displayRank(basicInfo)
     const matchList = await getMatchId(results.puuid, apiRegion[1])
     const matchData = await getMatchData(matchList, apiRegion[1])
+    const matcheHistory = await displayMatchData(matchData)
     const Icon = await basicSummonerInfo(results)
-    displayMatchData(matchData)
+    const SummonerGames = await summonerGame(results,matchData)
+
 
     console.log("list of matches id", matchList);
     console.log("user id", results);
@@ -70,7 +74,7 @@ async function processMatchData(fetchLink){
     return results
 }
 
-function displayMatchData(matchesArray){
+async function displayMatchData(matchesArray){
     
     let matchinfo = matchesArray.map(match => {
         let matchinfo = match.info
@@ -90,7 +94,6 @@ function displayMatchData(matchesArray){
             else if(matchinfo[i].participants[l].win == false) {
                 color = "<span style='color:red;'>"
             }
-
             listOfMatches.childNodes[i].innerHTML += color + matchinfo[i].participants[l].summonerName + "</span> ";
         }
     }
@@ -173,3 +176,22 @@ async function basicSummonerInfo(result){
     document.getElementById("basic-info-lvl").innerHTML = result.summonerLevel;
 }
 
+async function summonerGame(result,matchData){
+    var path = "";
+    var query = "";
+    var champion = ""
+    var kda = ""
+    for(i = 0; i < matchData.length; i++){
+        path = ".match" + i;
+        query = document.querySelector(path)
+
+        for(l = 0; l < matchData.length; l++){
+            if(matchData[i].info.participants[l].summonerName == result.name){
+                let short = matchData[i].info.participants[l]
+                champion = short.championName
+                kda = short.kills.toString() +"/"+ short.deaths.toString() +"/"+ short.assists.toString()
+            }
+        }
+        query.innerHTML += result.name + " " + "<img src=images/champion/"+ champion + ".png>" + kda;
+    }  
+}
