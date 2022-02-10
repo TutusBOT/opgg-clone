@@ -16,11 +16,12 @@ input[type=text]:-webkit-autofill:focus {
 
 section {
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  justify-items: center;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 .search-bar {
@@ -34,6 +35,8 @@ section {
   min-width: 300px;
   height: 1.5em;
   font-size: 2rem;
+  grid-area: 1/1/2/6;
+  place-self: center;
 }
 .search-bar .search-bar-region {
   border: none;
@@ -65,14 +68,75 @@ section {
   height: 100%;
 }
 
+#basic-info {
+  grid-area: 2/1/4/3;
+  place-self: center;
+}
+#basic-info img {
+  width: 50px;
+}
+
+.matches-played {
+  grid-area: 2/3/4/6;
+  place-self: center;
+}
+.matches-played img {
+  width: 50px;
+}
+
 .list-of-matches {
+  grid-area: 4/1/6/6;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 1rem;
+  grid-template-rows: 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 25px;
+}
+.list-of-matches li {
   list-style-type: none;
 }
 .list-of-matches .match {
+  place-self: center;
   background-color: grey;
-  border-radius: 10px;
-  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  grid-template-rows: 0.25fr 1fr;
+  width: 50vw;
+}
+.list-of-matches .match p {
+  grid-area: 1/1/2/4;
+  text-align: center;
+  border: solid 1px red;
+}
+.list-of-matches .match .teamOne {
+  grid-area: 2/2/2/3;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+}
+.list-of-matches .match .teamOne span {
+  text-align: end;
+}
+.list-of-matches .match .teamOne img {
+  width: 20px;
+}
+.list-of-matches .match .teamTwo {
+  grid-area: 2/3/2/4;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+}
+.list-of-matches .match .teamTwo span {
+  text-align: end;
+}
+.list-of-matches .match .teamTwo img {
+  width: 25px;
+}
+.list-of-matches .match .playerInfo {
+  grid-area: 2/1/2/2;
+  border: solid 1px black;
+}
+.list-of-matches .match img {
+  width: 50px;
+
 }/*# sourceMappingURL=style.css.map */

@@ -20,11 +20,12 @@ input[type="text"]:-webkit-autofill:focus{
 
 section{
     height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    justify-items: center;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
 }
 
 .search-bar{
@@ -38,7 +39,11 @@ section{
     min-width: 300px;
     height: 1.5em;
     font-size: 2rem;
-    
+    grid-area: 1 / 1 / 2 / 6;
+    place-self: center;
+    *{
+        font-family: $font-main;
+    }
     .search-bar-region{
         @include button-nooutline;
         background-color: $white;
@@ -66,14 +71,75 @@ section{
     }
 }
 
+#basic-info{
+    grid-area: 2 / 1 / 4 / 3;
+    place-self: center;
+    img{
+        width: 50px;
+    }   
+}
+
+.matches-played{
+    grid-area: 2 / 3 / 4 / 6;
+    place-self: center;
+    img{
+        width: 50px;
+    }   
+}
+
 .list-of-matches{
+    grid-area: 4 / 1 / 6 / 6;
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 1rem;
-    list-style-type: none;
-    .match{
+    grid-template-rows: 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 25px; 
+    li{
+        list-style-type: none;
+    }
+    .match{ 
+        place-self: center;
         background-color: grey;
-        border-radius: $border-radius;
-        padding: $padding-small;
+        display: grid;
+        grid-template-columns: 2.5fr 1fr 1fr;
+        grid-template-rows: 0.25fr 1fr;
+        width: 50vw;
+        
+        p{
+           grid-area: 1/1/2/4;
+            text-align: center;
+            border:solid 1px red;
+        }
+        .teamOne{
+            grid-area: 2/2/2/3;
+            border:solid 1px black;
+            display: flex;
+            flex-direction: column;
+            span{
+              text-align: end;
+            }
+            img{
+                width:20px;
+            }
+        }
+        .teamTwo{
+            grid-area: 2/3/2/4;
+            border:solid 1px black;
+            display: flex;
+            flex-direction: column;
+            span{
+                text-align: end;
+            }
+            img{
+                width:25px;
+            }
+        }
+        .playerInfo{
+            grid-area: 2/1/2/2;
+            border:solid 1px black;
+        }
+        img{
+            width:50px
+        }
     }
 }
