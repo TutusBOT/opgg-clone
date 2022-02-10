@@ -75,25 +75,12 @@ function displayMatchData(matchesArray){
         let matchinfo = match.info
         console.log("match", match)
         listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + "</p></li>";
-        // for(i=0; i<10; i++){
-        //     listOfMatches.innerHTML +=  matchinfo.participants[i].summonerName + "";
-        //     if(matchinfo.participants[i].win == true){
-        //         listOfMatches.innerHTML += "<span style='color:blue;'>Victory<span>"
-        //     }
-        //     else if(matchinfo.participants[i].win == false) {
-        //         listOfMatches.innerHTML += "<span style='color:red;'>Lose<span>"
-        //     }
-
-        //    if(i==4){
-        //         listOfMatches.innerHTML += "<br>";
-        //     }
-        // }
         return matchinfo
     });
-    console.log("chuj", matchinfo);
     for(i=0; i<matchesArray.length; i++){
         let listOfMatchesId = listOfMatches.childNodes[i].classList
         listOfMatchesId.add("match" + i)
+        listOfMatchesId.add("match")
         for(l=0; l<10; l++){
             listOfMatches.childNodes[i].innerHTML +=  matchinfo[i].participants[l].summonerName + " "
         }

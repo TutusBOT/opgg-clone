@@ -17,8 +17,10 @@ body{
 
 section{
     height: 100vh;
-    @include flex-center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    width: 100%;
 }
 
 .search-bar{
@@ -55,9 +57,11 @@ section{
 }
 
 .list-of-matches{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
     list-style-type: none;
-    li{
-        @include flex-center;
-        // background: linear-gradient(blue, black);
+    .match{
+        background-color: grey;
     }
 }

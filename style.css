@@ -14,10 +14,10 @@ body input {
 
 section {
   height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  width: 100%;
 }
 
 .search-bar {
@@ -58,10 +58,11 @@ section {
 }
 
 .list-of-matches {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
   list-style-type: none;
 }
-.list-of-matches li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.list-of-matches .match {
+  background-color: grey;
 }/*# sourceMappingURL=style.css.map */
