@@ -103,7 +103,7 @@ async function displayMatchData(matchesArray){
             let champion = matchinfo[i].participants[l].championName;
             query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
         }
-
+ 
         listOfMatches.childNodes[i].innerHTML += "</div>"
         listOfMatches.childNodes[i].innerHTML += "<div class='teamTwo' id=Team" + i + "b>"
         for(l=5; l<10; l++){

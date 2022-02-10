@@ -54,7 +54,7 @@
         "notes": "Game mode deprecated"
     },
     {
-        "queueId": 17,
+        "queueId": 17, 
         "map": "Crystal Scar",
         "description": "5v5 Dominion Draft Pick games",
         "notes": "Game mode deprecated"
