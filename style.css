@@ -17,6 +17,7 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
+  justify-items: center;
   width: 100%;
 }
 
