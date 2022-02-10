@@ -3,7 +3,7 @@ const winsParagraph = document.getElementById("wins")
 const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
-const APIKEY = "RGAPI-763ee034-324b-4597-8b2d-97b22e3eb6aa"
+const APIKEY = "RGAPI-763ee034-324b-4597-8b2d-97b22e3eb6aa" 
 
 
 async function getUserId(){

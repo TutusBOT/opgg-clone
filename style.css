@@ -123,7 +123,7 @@ section {
   text-align: end;
 }
 .list-of-matches .match .teamTwo img {
-  width: 20px;
+  width: 25px;
 }
 .list-of-matches .match .playerInfo {
   grid-area: 2/1/2/2;
