@@ -40,13 +40,14 @@ section{
     }
     .search-bar-region{
         @include button-nooutline;
+        background-color: $white;
         border-right: 1px solid grey;
         height: 100%;
         cursor: pointer;
     }
     .search-bar-summonername{
         @include button-nooutline;
-        background-color: inherit;
+        background-color: $white;
         width: 100%;
         padding-inline-start: .5rem;
     }

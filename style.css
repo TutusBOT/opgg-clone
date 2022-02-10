@@ -39,6 +39,7 @@ section {
 .search-bar .search-bar-region {
   border: none;
   outline: none;
+  background-color: #ededed;
   border-right: 1px solid grey;
   height: 100%;
   cursor: pointer;
@@ -46,7 +47,7 @@ section {
 .search-bar .search-bar-summonername {
   border: none;
   outline: none;
-  background-color: inherit;
+  background-color: #ededed;
   width: 100%;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
