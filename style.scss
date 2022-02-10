@@ -1,18 +1,21 @@
 @use "utilities/colors" as *;
 @use "utilities/mixins" as *;
 @use "utilities/fonts" as *;
+@use "utilities/variables" as *;
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: $font-main;
 }
 
 body{
     background: linear-gradient($background-gradient-lighter, $background-gradient-darker);
-    color: white;
-    input{
-        color: black;
-    }
+    color: $white;
+}
+
+input[type="text"]:-webkit-autofill:focus{
+    background-color: red !important;
 }
 
 section{
@@ -29,15 +32,13 @@ section{
     justify-content: space-between;
     align-items: center;
     padding-inline: .5rem;
-    border-radius: 10px;
+    border-radius: $border-radius;
     background-color: $white;
     width: 50%;
     min-width: 300px;
     height: 1.5em;
     font-size: 2rem;
-    *{
-        font-family: $font-main;
-    }
+    
     .search-bar-region{
         @include button-nooutline;
         background-color: $white;
@@ -49,7 +50,14 @@ section{
         @include button-nooutline;
         background-color: $white;
         width: 100%;
-        padding-inline-start: .5rem;
+        padding-inline-start: $padding-small;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        box-shadow: 0 0 0 30px $white inset !important;
+        -webkit-box-shadow: 0 0 0 30px $white inset !important;
     }
     .search-bar-button{
         @include button-nooutline;
@@ -65,5 +73,7 @@ section{
     list-style-type: none;
     .match{
         background-color: grey;
+        border-radius: $border-radius;
+        padding: $padding-small;
     }
 }

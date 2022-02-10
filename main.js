@@ -100,8 +100,7 @@ async function displayMatchData(matchesArray){
         }
         queueObject.forEach(id =>{
            if(id.queueId == matchinfo[i].queueId){
-               listOfMatches.childNodes[i].childNodes[0].innerText = id.description 
-               console.log(id);
+               listOfMatches.childNodes[i].childNodes[0].innerText = id.description
            } 
         })
         
