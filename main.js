@@ -167,6 +167,7 @@ function displayTotaMatchesPlayed(matches){
 }
 
 async function summonerIcon(result){
-    document.getElementById("icon").innerHTML = "<img src=images/profileicon/" + result.profileIconId+ ".png>"
+    let path = "images/profileicon/" + result.profileIconId + ".png";
+    document.getElementById("icon-img").src = path;
 }
 
