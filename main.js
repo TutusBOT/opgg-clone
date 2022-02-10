@@ -78,6 +78,7 @@ async function processMatchData(fetchLink){
 
 async function displayMatchData(matchesArray){
     const queueFetch = await fetch("scripts/queues.json")
+    const summoner = document.getElementById('summoner-name').value
     const queueObject = await queueFetch.json()
     console.log(queueObject);
     let matchinfo = matchesArray.map(match => {
@@ -102,6 +103,7 @@ async function displayMatchData(matchesArray){
             let query = document.querySelector("#Team"+i+"a")
             let champion = matchinfo[i].participants[l].championName;
             query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
+            
         }
  
         listOfMatches.childNodes[i].innerHTML += "</div>"
@@ -220,6 +222,12 @@ async function summonerGame(result,matchData){
                 let short = matchData[i].info.participants[l]
                 champion = short.championName
                 kda = short.kills.toString() +"/"+ short.deaths.toString() +"/"+ short.assists.toString()
+                if(matchData[i].info.participants[l].win == true){
+                    query.classList.add("win")
+                }
+                else if(matchData[i].info.participants[l].win == false){
+                    query.classList.add("lose")
+                }
             }
         }
         query.innerHTML += "<div class='playerInfo'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png><span>" + kda + "</span></div>";

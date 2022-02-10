@@ -6,7 +6,7 @@
 }
 
 body {
-  background: linear-gradient(#1b1759, #211759);
+  background: #211759;
   color: #ededed;
 }
 
@@ -37,6 +37,9 @@ section {
   font-size: 2rem;
   grid-area: 1/1/2/6;
   place-self: center;
+}
+.search-bar * {
+  font-family: "Quicksand", sans-serif;
 }
 .search-bar .search-bar-region {
   border: none;
@@ -97,7 +100,6 @@ section {
 }
 .list-of-matches .match {
   place-self: center;
-  background-color: grey;
   display: grid;
   grid-template-columns: 2.5fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
@@ -130,7 +132,7 @@ section {
   text-align: end;
 }
 .list-of-matches .match .teamTwo img {
-  width: 25px;
+  width: 20px;
 }
 .list-of-matches .match .playerInfo {
   grid-area: 2/1/2/2;
@@ -138,5 +140,12 @@ section {
 }
 .list-of-matches .match img {
   width: 50px;
+}
 
+.win {
+  background: linear-gradient(90deg, blue, #1b1759);
+}
+
+.lose {
+  background: linear-gradient(90deg, red, #1b1759);
 }/*# sourceMappingURL=style.css.map */

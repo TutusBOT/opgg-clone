@@ -10,7 +10,7 @@
 }
 
 body{
-    background: linear-gradient($background-gradient-lighter, $background-gradient-darker);
+    background: $background-darker;
     color: $white;
 }
 
@@ -99,7 +99,6 @@ section{
     }
     .match{ 
         place-self: center;
-        background-color: grey;
         display: grid;
         grid-template-columns: 2.5fr 1fr 1fr;
         grid-template-rows: 0.25fr 1fr;
@@ -131,7 +130,7 @@ section{
                 text-align: end;
             }
             img{
-                width:25px;
+                width: 20px;
             }
         }
         .playerInfo{
@@ -142,4 +141,12 @@ section{
             width:50px
         }
     }
+}
+
+.win{
+    background: linear-gradient(90deg, blue, $background-lighter);
+}
+
+.lose{
+    background: linear-gradient(90deg, red, $background-lighter);
 }
