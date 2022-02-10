@@ -22,9 +22,10 @@ async function getUserId(){
     const basicInfo = await getRank(results.id, apiRegion[0])
     const rankDisplayer = await displayRank(basicInfo)
     const matchList = await getMatchId(results.puuid, apiRegion[1])
-
     const matchData = await getMatchData(matchList, apiRegion[1])
+    const Icon = await summonerIcon(results)
     displayMatchData(matchData)
+
     console.log("list of matches id", matchList);
     console.log("user id", results);
     console.log("basic info",basicInfo);
@@ -82,19 +83,16 @@ function displayMatchData(matchesArray){
         listOfMatchesId.add("match" + i)
         listOfMatchesId.add("match")
         for(l=0; l<10; l++){
-            listOfMatches.childNodes[i].innerHTML +=  matchinfo[i].participants[l].summonerName + " "
-        }
-        
-            if(matchinfo[i].participants[i].win == true){
-                listOfMatches.childNodes[i].innerHTML += "<span style='color:blue;'>Victory<span>"
+            var color = '';
+            if(matchinfo[i].participants[l].win == true){
+                color = "<span style='color:blue;'>"
             }
-            else if(matchinfo[i].participants[i].win == false) {
-                listOfMatches.childNodes[i].innerHTML += "<span style='color:red;'>Lose<span>"
+            else if(matchinfo[i].participants[l].win == false) {
+                color = "<span style='color:red;'>"
             }
 
-           if(i==4){
-                listOfMatches.innerHTML += "<br>";
-            }
+            listOfMatches.childNodes[i].innerHTML += color + matchinfo[i].participants[l].summonerName + "</span> ";
+        }
     }
     console.log("list of matches", listOfMatches);
 }
@@ -168,5 +166,7 @@ function displayTotaMatchesPlayed(matches){
     totalPlayedParagraph.innerText = "Total: " + total
 }
 
-
+async function summonerIcon(result){
+    document.getElementById("icon").innerHTML = "<img src=images/profileicon/" + result.profileIconId+ ".png>"
+}
 
