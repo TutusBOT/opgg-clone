@@ -23,7 +23,7 @@ async function getUserId(){
     const rankDisplayer = await displayRank(basicInfo)
     const matchList = await getMatchId(results.puuid, apiRegion[1])
     const matchData = await getMatchData(matchList, apiRegion[1])
-    const Icon = await summonerIcon(results)
+    const Icon = await basicSummonerInfo(results)
     displayMatchData(matchData)
 
     console.log("list of matches id", matchList);
@@ -166,8 +166,10 @@ function displayTotaMatchesPlayed(matches){
     totalPlayedParagraph.innerText = "Total: " + total
 }
 
-async function summonerIcon(result){
+async function basicSummonerInfo(result){
     let path = "images/profileicon/" + result.profileIconId + ".png";
-    document.getElementById("icon-img").src = path;
+    document.getElementById("basic-info-icon").src = path;
+    document.getElementById("basic-info-name").innerHTML = result.name;
+    document.getElementById("basic-info-lvl").innerHTML = result.summonerLevel;
 }
 
