@@ -75,11 +75,13 @@ async function processMatchData(fetchLink){
 }
 
 async function displayMatchData(matchesArray){
-    
+    const queueFetch = await fetch("scripts/queues.json")
+    const queueObject = await queueFetch.json()
+    console.log(queueObject);
     let matchinfo = matchesArray.map(match => {
         let matchinfo = match.info
         console.log("match", match)
-        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + "</p></li>";
+        listOfMatches.innerHTML += "<li class=''><p></p></li>";
         return matchinfo
     });
     for(i=0; i<matchesArray.length; i++){
@@ -96,6 +98,14 @@ async function displayMatchData(matchesArray){
             }
             listOfMatches.childNodes[i].innerHTML += color + matchinfo[i].participants[l].summonerName + "</span> ";
         }
+        queueObject.forEach(id =>{
+           if(id.queueId == matchinfo[i].queueId){
+               listOfMatches.childNodes[i].childNodes[0].innerText = id.description 
+               console.log(id);
+           } 
+        })
+        
+
     }
     console.log("list of matches", listOfMatches);
 }
