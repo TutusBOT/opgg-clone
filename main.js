@@ -70,14 +70,26 @@ async function processMatchData(fetchLink){
     return results
 }
 
-function displayMatchData(matchesArray){
+async function displayMatchData(matchesArray){
+    const queuesResponse = await fetch("scripts/queues.json")
+    const queuesResult = await queuesResponse.json()
+    console.log(queuesResult);
     
-    let matchinfo = matchesArray.map(match => {
+    let matchinfo = await matchesArray.map(match => {
         let matchinfo = match.info
+        let matchMode = getMatchMode(matchinfo.queueId)
+        console.log(matchMode);
         console.log("match", match)
-        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + "</p></li>";
+        // getMatchMode(matchinfo.queueId)
         return matchinfo
     });
+    for(i=0; i<queuesResult.length; i++){
+        if(matchinfo.queueId == queueId){
+            listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.description + "</p></li>";
+            // return queue.description
+        }
+    };
+
     for(i=0; i<matchesArray.length; i++){
         let listOfMatchesId = listOfMatches.childNodes[i].classList
         listOfMatchesId.add("match" + i)
@@ -95,6 +107,17 @@ function displayMatchData(matchesArray){
         }
     }
     console.log("list of matches", listOfMatches);
+}
+
+async function getMatchMode(queueId){
+    const response = await fetch("scripts/queues.json")
+    const result = await response.json()
+    result.forEach(queue => {
+        if(queue.queueId == queueId){
+            listOfMatches.innerHTML += "<li class=''><p>" + queue.description + "</p></li>";
+            return queue.description
+        }
+    });
 }
 
 function displayMatchUserKDA(matchesArray, userPuuid){
