@@ -3,7 +3,7 @@ const winsParagraph = document.getElementById("wins")
 const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
-const APIKEY = "RGAPI-c75b5e63-7d94-4084-8802-7a12cacd41e3"
+const APIKEY = "RGAPI-763ee034-324b-4597-8b2d-97b22e3eb6aa"
 
 
 async function getUserId(){
@@ -86,16 +86,34 @@ async function displayMatchData(matchesArray){
         let listOfMatchesId = listOfMatches.childNodes[i].classList
         listOfMatchesId.add("match" + i)
         listOfMatchesId.add("match")
-        for(l=0; l<10; l++){
-            var color = '';
+        listOfMatches.childNodes[i].innerHTML += "<div class='teamOne' id=Team" + i + "a>"
+        for(l=0; l<5; l++){
+            let color = '';
             if(matchinfo[i].participants[l].win == true){
                 color = "<span style='color:blue;'>"
             }
             else if(matchinfo[i].participants[l].win == false) {
                 color = "<span style='color:red;'>"
             }
-            listOfMatches.childNodes[i].innerHTML += color + matchinfo[i].participants[l].summonerName + "</span> ";
+            let query = document.querySelector("#Team"+i+"a")
+            let champion = matchinfo[i].participants[l].championName;
+            query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
         }
+        listOfMatches.childNodes[i].innerHTML += "</div>"
+        listOfMatches.childNodes[i].innerHTML += "<div class='teamTwo' id=Team" + i + "b>"
+        for(l=5; l<10; l++){
+            let color = '';
+            if(matchinfo[i].participants[l].win == true){
+                color = "<span style='color:blue;'>"
+            }
+            else if(matchinfo[i].participants[l].win == false) {
+                color = "<span style='color:red;'>"
+            }
+            let query = document.querySelector("#Team"+i+"b")
+            let champion = matchinfo[i].participants[l].championName;
+            query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
+        }
+        listOfMatches.childNodes[i].innerHTML += "</div>"
     }
     console.log("list of matches", listOfMatches);
 }
@@ -192,6 +210,6 @@ async function summonerGame(result,matchData){
                 kda = short.kills.toString() +"/"+ short.deaths.toString() +"/"+ short.assists.toString()
             }
         }
-        query.innerHTML += result.name + " " + "<img src=images/champion/"+ champion + ".png>" + kda;
+        query.innerHTML += "<div class='playerInfo'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png><span>" + kda + "</span></div>";
     }  
 }
