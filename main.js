@@ -3,7 +3,9 @@ const winsParagraph = document.getElementById("wins")
 const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
-const APIKEY = "RGAPI-763ee034-324b-4597-8b2d-97b22e3eb6aa" 
+
+const APIKEY = "RGAPI-9f6dd5f4-6908-4c50-af2b-c62ce9bf2bfa"
+
 
 
 async function getUserId(){
@@ -75,11 +77,13 @@ async function processMatchData(fetchLink){
 }
 
 async function displayMatchData(matchesArray){
-    
+    const queueFetch = await fetch("scripts/queues.json")
+    const queueObject = await queueFetch.json()
+    console.log(queueObject);
     let matchinfo = matchesArray.map(match => {
         let matchinfo = match.info
         console.log("match", match)
-        listOfMatches.innerHTML += "<li class=''><p>" + matchinfo.gameMode + "</p></li>";
+        listOfMatches.innerHTML += "<li class=''><p></p></li>";
         return matchinfo
     });
     for(i=0; i<matchesArray.length; i++){
@@ -99,6 +103,7 @@ async function displayMatchData(matchesArray){
             let champion = matchinfo[i].participants[l].championName;
             query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
         }
+
         listOfMatches.childNodes[i].innerHTML += "</div>"
         listOfMatches.childNodes[i].innerHTML += "<div class='teamTwo' id=Team" + i + "b>"
         for(l=5; l<10; l++){
@@ -113,7 +118,14 @@ async function displayMatchData(matchesArray){
             let champion = matchinfo[i].participants[l].championName;
             query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
         }
-        listOfMatches.childNodes[i].innerHTML += "</div>"
+//         listOfMatches.childNodes[i].innerHTML += "</div>"
+
+        queueObject.forEach(id =>{
+           if(id.queueId == matchinfo[i].queueId){
+               listOfMatches.childNodes[i].childNodes[0].innerText = id.description
+           } 
+        })
+
     }
     console.log("list of matches", listOfMatches);
 }

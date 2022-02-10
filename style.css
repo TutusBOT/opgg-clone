@@ -2,14 +2,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
   background: linear-gradient(#1b1759, #211759);
-  color: white;
+  color: #ededed;
 }
-body input {
-  color: black;
+
+input[type=text]:-webkit-autofill:focus {
+  background-color: red !important;
 }
 
 section {
@@ -36,12 +38,10 @@ section {
   grid-area: 1/1/2/6;
   place-self: center;
 }
-.search-bar * {
-  font-family: "Quicksand", sans-serif;
-}
 .search-bar .search-bar-region {
   border: none;
   outline: none;
+  background-color: #ededed;
   border-right: 1px solid grey;
   height: 100%;
   cursor: pointer;
@@ -49,10 +49,17 @@ section {
 .search-bar .search-bar-summonername {
   border: none;
   outline: none;
-  background-color: inherit;
+  background-color: #ededed;
   width: 100%;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
+}
+.search-bar input:-webkit-autofill,
+.search-bar input:-webkit-autofill:hover,
+.search-bar input:-webkit-autofill:focus,
+.search-bar input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #ededed inset !important;
+  -webkit-box-shadow: 0 0 0 30px #ededed inset !important;
 }
 .search-bar .search-bar-button {
   border: none;
@@ -131,4 +138,5 @@ section {
 }
 .list-of-matches .match img {
   width: 50px;
+
 }/*# sourceMappingURL=style.css.map */
