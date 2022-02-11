@@ -97,6 +97,7 @@ section {
   list-style-type: none;
 }
 .list-of-matches .match {
+  padding: 0.5rem;
   place-self: center;
   display: grid;
   grid-template-columns: 2.5fr 1fr 1fr;

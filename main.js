@@ -100,9 +100,13 @@ async function displayMatchData(matchesArray){
             // else if(matchinfo[i].participants[l].win == false) {
             //     color = "<span style='color:red;'>"
             // }
+            let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"a")
             let champion = matchinfo[i].participants[l].championName;
-            query.innerHTML += "<span><p>" + matchinfo[i].participants[l].summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
+            if(summonerName.length > 15){
+                summonerName = summonerName.slice(0, 11)+"..."
+            }
+            query.innerHTML += "<span><p>" + summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
             
         }
  
