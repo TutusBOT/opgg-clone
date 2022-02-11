@@ -116,7 +116,7 @@ async function displayMatchData(matchesArray){
             let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"b")
             let champion = matchinfo[i].participants[l].championName;
-            if(summonerName.length > 15){
+            if(summonerName.length > 13){
                 summonerName = summonerName.slice(0, 11)+"..."
             }
             query.innerHTML += "<span><p>" + summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
