@@ -91,9 +91,7 @@ section {
   grid-area: 4/1/6/6;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 25px;
+  grid-row-gap: 1rem;
 }
 .list-of-matches li {
   list-style-type: none;
@@ -104,48 +102,59 @@ section {
   grid-template-columns: 2.5fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
   width: 50vw;
+  border-radius: 1rem;
 }
 .list-of-matches .match p {
   grid-area: 1/1/2/4;
   text-align: center;
-  border: solid 1px red;
 }
-.list-of-matches .match .teamOne {
-  grid-area: 2/2/2/3;
-  border: solid 1px black;
-  display: flex;
-  flex-direction: column;
-}
-.list-of-matches .match .teamOne span {
-  text-align: end;
-}
-.list-of-matches .match .teamOne img {
-  width: 20px;
-}
+.list-of-matches .match .teamOne,
 .list-of-matches .match .teamTwo {
-  grid-area: 2/3/2/4;
-  border: solid 1px black;
   display: flex;
   flex-direction: column;
 }
+.list-of-matches .match .teamOne span,
 .list-of-matches .match .teamTwo span {
   text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
+.list-of-matches .match .teamOne span p,
+.list-of-matches .match .teamTwo span p {
+  text-align: end;
+  overflow: hidden;
+  word-wrap: none;
+}
+.list-of-matches .match .teamOne img,
 .list-of-matches .match .teamTwo img {
   width: 20px;
 }
 .list-of-matches .match .playerInfo {
   grid-area: 2/1/2/2;
-  border: solid 1px black;
 }
 .list-of-matches .match img {
   width: 50px;
 }
 
+.teamOne {
+  grid-area: 2/2/2/3;
+}
+
+.teamTwo {
+  grid-area: 2/3/2/4;
+}
+
 .win {
-  background: linear-gradient(90deg, blue, #1b1759);
+  background: linear-gradient(90deg, #1a109a, #211c6d);
+}
+.win:hover {
+  background: linear-gradient(90deg, #180f8c, #1d1961);
 }
 
 .lose {
-  background: linear-gradient(90deg, red, #1b1759);
+  background: linear-gradient(90deg, #840f0f, #211c6d);
+}
+.lose:hover {
+  background: linear-gradient(90deg, #760d0d, #1d1961);
 }/*# sourceMappingURL=style.css.map */

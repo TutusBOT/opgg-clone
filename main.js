@@ -93,32 +93,29 @@ async function displayMatchData(matchesArray){
         listOfMatchesId.add("match")
         listOfMatches.childNodes[i].innerHTML += "<div class='teamOne' id=Team" + i + "a>"
         for(l=0; l<5; l++){
-            let color = '';
-            if(matchinfo[i].participants[l].win == true){
-                color = "<span style='color:blue;'>"
-            }
-            else if(matchinfo[i].participants[l].win == false) {
-                color = "<span style='color:red;'>"
-            }
+            // let color = '';
+            // if(matchinfo[i].participants[l].win == true){
+            //     color = "<span style='color:blue;'>"
+            // }
+            // else if(matchinfo[i].participants[l].win == false) {
+            //     color = "<span style='color:red;'>"
+            // }
             let query = document.querySelector("#Team"+i+"a")
             let champion = matchinfo[i].participants[l].championName;
-            query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
+            query.innerHTML += "<span><p>" + matchinfo[i].participants[l].summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
             
         }
  
         listOfMatches.childNodes[i].innerHTML += "</div>"
         listOfMatches.childNodes[i].innerHTML += "<div class='teamTwo' id=Team" + i + "b>"
         for(l=5; l<10; l++){
-            let color = '';
-            if(matchinfo[i].participants[l].win == true){
-                color = "<span style='color:blue;'>"
-            }
-            else if(matchinfo[i].participants[l].win == false) {
-                color = "<span style='color:red;'>"
-            }
+            let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"b")
             let champion = matchinfo[i].participants[l].championName;
-            query.innerHTML += color + matchinfo[i].participants[l].summonerName + "<img src=images/champion/"+champion+ ".png>" +"</span><br>";
+            if(summonerName.length > 15){
+                summonerName = summonerName.slice(0, 11)+"..."
+            }
+            query.innerHTML += "<span><p>" + summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
         }
 //         listOfMatches.childNodes[i].innerHTML += "</div>"
 
@@ -130,6 +127,7 @@ async function displayMatchData(matchesArray){
 
     }
     console.log("list of matches", listOfMatches);
+    console.log(matchesArray[0].info.participants[3].summonerName.length);
 }
 
 function displayMatchUserKDA(matchesArray, userPuuid){
