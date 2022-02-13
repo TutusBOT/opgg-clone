@@ -1,22 +1,6 @@
-@use "utilities/colors" as *;
-@use "utilities/mixins" as *;
-@use "utilities/fonts" as *;
-@use "utilities/variables" as *;
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: $font-main;
-}
-
-body{
-    background: $background-darker;
-    color: $white;
-}
-
-input[type="text"]:-webkit-autofill:focus{
-    background-color: red !important;
-}
+@use "css/abstracts" as *;
+@use "css/layout";
+@use "css/base" as *;
 
 section{
     height: 100vh;
@@ -45,14 +29,12 @@ section{
         font-family: $font-main;
     }
     .search-bar-region{
-        @include button-nooutline;
         background-color: $white;
         border-right: 1px solid grey;
         height: 100%;
         cursor: pointer;
     }
     .search-bar-summonername{
-        @include button-nooutline;
         background-color: $white;
         width: 100%;
         padding-inline-start: $padding-small;
@@ -65,7 +47,6 @@ section{
         -webkit-box-shadow: 0 0 0 30px $white inset !important;
     }
     .search-bar-button{
-        @include button-nooutline;
         cursor: pointer;
         height: 100%;
     }
@@ -85,126 +66,4 @@ section{
     img{
         width: 50px;
     }   
-}
-
-.list-of-matches{
-    grid-area: 4 / 1 / 6 / 6;
-    display: grid;
-    grid-row-gap: 1rem; 
-    li{
-        list-style-type: none;
-    }
-    .match{ 
-        padding: .5rem;
-        place-self: center;
-        display: grid;
-        grid-template-columns: 1.25fr 1.25 1fr 1fr;
-        grid-template-rows: 0.25fr 1fr;
-        width: 50vw;
-        border-radius: 1rem;
-        .game-mode{
-            grid-column: 1 / 4;
-            text-align: center;
-        }
-        .teamOne,
-        .teamTwo{
-            display: flex;
-            flex-direction: column;
-            span{
-                text-align: end;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-            }
-            img{
-                width:20px;
-            }
-        }
-        .player-stats{
-            grid-area: 2/2/3/3;
-            @include flex-center;
-            flex-direction: column;
-            row-gap: 1rem;
-            text-align: center;
-        }
-        .player-info{
-            grid-area: 2/1/3/2;
-            align-self: center;
-        }
-        img{
-            width:50px
-        }
-    }
-}
-
-.teamOne{
-    grid-area: 2/3/3/4;
-}
-
-.teamTwo{
-    grid-area: 2/4/3/5;
-}
-
-.win{
-    background: linear-gradient(
-        90deg, 
-        lighten($gradient-blue, 5%), 
-        lighten($background-lighter, 5%));
-    &:hover{
-        background: linear-gradient(
-            90deg, 
-            lighten($gradient-blue, 2%), 
-            lighten($background-lighter, 2%));
-    }
-}
-
-.lose{
-    background: linear-gradient(
-        90deg, 
-        lighten($gradient-red, 5%), 
-        lighten($background-lighter, 5%));
-    &:hover{
-        background: linear-gradient(
-            90deg, 
-            lighten($gradient-red, 2%), 
-            lighten($background-lighter, 2%));
-    }
-}
-
-.match-summonername{
-    text-align: end;
-    position: relative;
-    white-space: nowrap;
-}
-
-.match-summonername:hover .match-summonername-info{
-    display: block;
-}
-.match-summonername-info{
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    background: $grey;
-    outline: 1px solid $white;
-    border-radius: 1rem;
-    text-align: center;
-    white-space: nowrap;
-    padding-inline: 1rem;
-    padding-block: .25rem;
-    z-index: 999;
-    opacity: 0;
-    animation: opacity 300ms forwards ease-out;
-}
-
-
-@keyframes opacity{
-    to{
-        opacity: 1;
-    }
-}
-
-.match-info{
-    grid-area: 1/4/2/5;
-    justify-self: center;
 }

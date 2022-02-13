@@ -118,7 +118,7 @@ async function displayMatchData(matchesArray){
 
         queueObject.forEach(id =>{
            if(id.queueId == matchinfo[i].queueId){
-               listOfMatches.childNodes[i].childNodes[0].innerText = id.description
+               listOfMatches.childNodes[i].childNodes[0].textContent = id.description
            } 
         })
 

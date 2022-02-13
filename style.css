@@ -1,92 +1,3 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Quicksand", sans-serif;
-}
-
-body {
-  background: #211759;
-  color: #ededed;
-}
-
-input[type=text]:-webkit-autofill:focus {
-  background-color: red !important;
-}
-
-section {
-  height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.search-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 0.5rem;
-  border-radius: 10px;
-  background-color: #ededed;
-  width: 50%;
-  min-width: 300px;
-  height: 1.5em;
-  font-size: 2rem;
-  grid-area: 1/1/2/6;
-  place-self: center;
-}
-.search-bar * {
-  font-family: "Quicksand", sans-serif;
-}
-.search-bar .search-bar-region {
-  border: none;
-  outline: none;
-  background-color: #ededed;
-  border-right: 1px solid grey;
-  height: 100%;
-  cursor: pointer;
-}
-.search-bar .search-bar-summonername {
-  border: none;
-  outline: none;
-  background-color: #ededed;
-  width: 100%;
-  -webkit-padding-start: 0.5rem;
-          padding-inline-start: 0.5rem;
-}
-.search-bar input:-webkit-autofill,
-.search-bar input:-webkit-autofill:hover,
-.search-bar input:-webkit-autofill:focus,
-.search-bar input:-webkit-autofill:active {
-  box-shadow: 0 0 0 30px #ededed inset !important;
-  -webkit-box-shadow: 0 0 0 30px #ededed inset !important;
-}
-.search-bar .search-bar-button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  height: 100%;
-}
-
-#basic-info {
-  grid-area: 2/1/4/3;
-  place-self: center;
-}
-#basic-info img {
-  width: 50px;
-}
-
-.matches-played {
-  grid-area: 2/3/4/6;
-  place-self: center;
-}
-.matches-played img {
-  width: 50px;
-}
-
 .list-of-matches {
   grid-area: 4/1/6/6;
   display: grid;
@@ -107,6 +18,8 @@ section {
 .list-of-matches .match .game-mode {
   grid-column: 1/4;
   text-align: center;
+  justify-self: center;
+  width: 100%;
 }
 .list-of-matches .match .teamOne,
 .list-of-matches .match .teamTwo {
@@ -205,4 +118,94 @@ section {
 .match-info {
   grid-area: 1/4/2/5;
   justify-self: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  background: #211759;
+  color: #ededed;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+select {
+  border: none;
+  outline: none;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 0.5rem;
+  border-radius: 10px;
+  background-color: #ededed;
+  width: 50%;
+  min-width: 300px;
+  height: 1.5em;
+  font-size: 2rem;
+  grid-area: 1/1/2/6;
+  place-self: center;
+}
+.search-bar * {
+  font-family: "Quicksand", sans-serif;
+}
+.search-bar .search-bar-region {
+  background-color: #ededed;
+  border-right: 1px solid grey;
+  height: 100%;
+  cursor: pointer;
+}
+.search-bar .search-bar-summonername {
+  background-color: #ededed;
+  width: 100%;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+}
+.search-bar input:-webkit-autofill,
+.search-bar input:-webkit-autofill:hover,
+.search-bar input:-webkit-autofill:focus,
+.search-bar input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #ededed inset !important;
+  -webkit-box-shadow: 0 0 0 30px #ededed inset !important;
+}
+.search-bar .search-bar-button {
+  cursor: pointer;
+  height: 100%;
+}
+
+#basic-info {
+  grid-area: 2/1/4/3;
+  place-self: center;
+}
+#basic-info img {
+  width: 50px;
+}
+
+.matches-played {
+  grid-area: 2/3/4/6;
+  place-self: center;
+}
+.matches-played img {
+  width: 50px;
 }/*# sourceMappingURL=style.css.map */
