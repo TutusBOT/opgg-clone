@@ -130,6 +130,8 @@
 body {
   background: #211759;
   color: #ededed;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
 }
 
 html:focus-within {
