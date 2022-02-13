@@ -40,14 +40,12 @@ async function getUserId(){
     document.getElementById('rank').innerText = rankDisplayer[0];
 
     const rankEmblemToDisplay = await displayRankEmblem(rankDisplayer[1]) 
-    const userKDA = displayMatchUserKDA(matchData, results.puuid)
-    console.log("kda", userKDA); 
+    // const userKDA = displayMatchUserKDA(matchData, results.puuid)
     displayTotaMatchesPlayed(rankDisplayer[2])
 
     rankEmblemImg.src = rankEmblemToDisplay
 }
     
-
 async function getRank(userId, apiRegion){
     const response = await fetch("https://"+ apiRegion +".api.riotgames.com/lol/league/v4/entries/by-summoner/"+userId+"?api_key="+APIKEY)
     const results = await response.json()
@@ -78,7 +76,7 @@ async function processMatchData(fetchLink){
 
 async function displayMatchData(matchesArray){
     const queueFetch = await fetch("scripts/queues.json")
-    const summoner = document.getElementById('summoner-name').value
+    // const summoner = document.getElementById('summoner-name').value  po co to pobierać?
     const queueObject = await queueFetch.json()
     console.log(queueObject);
     let matchinfo = matchesArray.map(match => {
@@ -93,13 +91,6 @@ async function displayMatchData(matchesArray){
         listOfMatchesId.add("match")
         listOfMatches.childNodes[i].innerHTML += "<div class='teamOne' id=Team" + i + "a>"
         for(l=0; l<5; l++){
-            // let color = '';
-            // if(matchinfo[i].participants[l].win == true){
-            //     color = "<span style='color:blue;'>"
-            // }
-            // else if(matchinfo[i].participants[l].win == false) {
-            //     color = "<span style='color:red;'>"
-            // }
             let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"a")
             let champion = matchinfo[i].participants[l].championName;
@@ -124,7 +115,6 @@ async function displayMatchData(matchesArray){
             query.innerHTML += "<span><div class='match-summonername'>" + summonerNameFormatted + "<div class='match-summonername-info'>"+ summonerName +"</div>" + "</div><img src=images/champion/"+champion+ ".png>" +"</span>";
 
         }
-//         listOfMatches.childNodes[i].innerHTML += "</div>"
 
         queueObject.forEach(id =>{
            if(id.queueId == matchinfo[i].queueId){
@@ -137,25 +127,25 @@ async function displayMatchData(matchesArray){
     console.log(matchesArray[0].info.participants[3].summonerName.length);
 }
 
-function displayMatchUserKDA(matchesArray, userPuuid){
-    let kdaArrays = matchesArray.map(match =>{
-        let whereKDA = match.info.participants.map(participant =>{
-            if(participant.puuid == userPuuid && participant.deaths != 0){
-                console.log((parseFloat(participant.assists) + parseFloat(participant.kills))/parseFloat(participant.deaths), participant.kills, participant.deaths, participant.assists);
-                return participant.kills
-            }
-            else if(participant.puuid == userPuuid){
-                return "perfect kda"
-            }
-        })
-        for(i=0; i<whereKDA.length; i++){
-            if(whereKDA[i] != undefined){
-                return whereKDA[i]
-            }
-        }
-    })
-    console.log("kdas arrays", kdaArrays);
-}
+// function displayMatchUserKDA(matchesArray, userPuuid){
+//     let kdaArrays = matchesArray.map(match =>{
+//         let whereKDA = match.info.participants.map(participant =>{
+//             if(participant.puuid == userPuuid && participant.deaths != 0){
+//                 console.log((parseFloat(participant.assists) + parseFloat(participant.kills))/parseFloat(participant.deaths), participant.kills, participant.deaths, participant.assists);
+//                 return participant.kills
+//             }
+//             else if(participant.puuid == userPuuid){
+//                 return "perfect kda"
+//             }
+//         })
+//         for(i=0; i<whereKDA.length; i++){
+//             if(whereKDA[i] != undefined){
+//                 return whereKDA[i]
+//             }
+//         }
+//     })
+//     console.log("kdas arrays", kdaArrays);
+// }  dodane do summonerGame()
 
 async function displayRank(rankData){
     let rankToDisplay = []
@@ -214,10 +204,7 @@ async function basicSummonerInfo(result){
 }
 
 async function summonerGame(result,matchData){
-    var path = "";
-    var query = "";
-    var champion = ""
-    var kda = ""
+    let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes
     for(i = 0; i < matchData.length; i++){
         path = ".match" + i;
         query = document.querySelector(path)
@@ -226,15 +213,31 @@ async function summonerGame(result,matchData){
             if(matchData[i].info.participants[l].summonerName == result.name){
                 let short = matchData[i].info.participants[l]
                 champion = short.championName
-                kda = short.kills.toString() +"/"+ short.deaths.toString() +"/"+ short.assists.toString()
+                kills = short.kills
+                deaths = short.deaths
+                assists = short.assists
+                cs = short.totalMinionsKilled
+                duration = matchData[i].info.gameDuration
+                if (!duration % 60) durationMinutes = ':00'
+                else if (duration % 60 < 10) durationMinutes = ":0" + duration % 60
+                else { durationMinutes = ":" + duration % 60}
+                duration = Math.floor(duration / 60)
+                if(deaths){
+                    kda = (parseFloat(kills) + parseFloat(assists))/parseFloat(deaths)
+                    kda = kda.toFixed(2)
+                }
+                else{
+                    kda = "Perfect"
+                }
                 if(matchData[i].info.participants[l].win == true){
                     query.classList.add("win")
                 }
                 else if(matchData[i].info.participants[l].win == false){
                     query.classList.add("lose")
                 }
+
             }
         }
-        query.innerHTML += "<div class='playerInfo'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png><span>" + kda + "</span></div>";
+        query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";
     }  
 }
