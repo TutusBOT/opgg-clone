@@ -1,18 +1,2 @@
 @use "css/layout";
-@use "css/base" as *;
-
-#basic-info{
-    grid-area: 2 / 1 / 4 / 3;
-    place-self: center;
-    img{
-        width: 50px;
-    }   
-}
-
-.matches-played{
-    grid-area: 2 / 3 / 4 / 6;
-    place-self: center;
-    img{
-        width: 50px;
-    }   
-}
+@use "css/base";

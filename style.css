@@ -169,6 +169,22 @@
   grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
 }
 
+.matches-played {
+  grid-area: 2/3/4/6;
+  place-self: center;
+}
+.matches-played img {
+  width: 50px;
+}
+
+.basic-info {
+  grid-area: 2/1/4/3;
+  place-self: center;
+}
+.basic-info img {
+  width: 50px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -192,20 +208,4 @@ input,
 select {
   border: none;
   outline: none;
-}
-
-#basic-info {
-  grid-area: 2/1/4/3;
-  place-self: center;
-}
-#basic-info img {
-  width: 50px;
-}
-
-.matches-played {
-  grid-area: 2/3/4/6;
-  place-self: center;
-}
-.matches-played img {
-  width: 50px;
 }/*# sourceMappingURL=style.css.map */

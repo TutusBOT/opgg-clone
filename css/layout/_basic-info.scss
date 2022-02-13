@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+.basic-info{
+    grid-area: 2 / 1 / 4 / 3;
+    place-self: center;
+    img{
+        width: 50px;
+    }   
+}

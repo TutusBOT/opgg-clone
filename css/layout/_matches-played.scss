@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+.matches-played{
+    grid-area: 2 / 3 / 4 / 6;
+    place-self: center;
+    img{
+        width: 50px;
+    }   
+}
