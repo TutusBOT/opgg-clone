@@ -207,10 +207,16 @@ async function basicSummonerInfo(result){
 }
 
 async function summonerGame(result,matchData){
-    let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes
+    const fetchSummoner = await fetch("scripts/summoner.json")
+    const resultsSummoner = await fetchSummoner.json()
+    const arraySummoner = Object.entries(resultsSummoner.data)
+    console.log("summoner spells", resultsSummoner);
+    let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes, usedSummonerSpells
+    
     for(i = 0; i < matchData.length; i++){
         path = ".match" + i;
         query = document.querySelector(path)
+        let summonerSpells = []
 
         for(l = 0; l < matchData.length; l++){
             if(matchData[i].info.participants[l].summonerName == result.name){
@@ -238,9 +244,25 @@ async function summonerGame(result,matchData){
                 else if(matchData[i].info.participants[l].win == false){
                     query.classList.add("lose")
                 }
-
+                summonerSpells.push(short.summoner1Id, short.summoner2Id)
+                let filteredSummonerSpells = arraySummoner.filter(summoner =>{
+                    let array = []
+                    if(summoner[1].key == summonerSpells[0]){
+                        array.push(summoner)
+                    }
+                    else if(summoner[1].key == summonerSpells[1]){
+                        array.push(summoner)
+                    }
+                    if(array.length){
+                        return array
+                    }
+                    
+                })
+                usedSummonerSpells = filteredSummonerSpells
             }
         }
-        query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";
+        console.log("ziemniak", usedSummonerSpells);
+        query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png><img src='images/spells/summoner/"+ usedSummonerSpells[0][1].image.full +"' class='summoner-spell'><img src='images/spells/summoner/"+ usedSummonerSpells[1][1].image.full +"' class='summoner-spell'><div class='player-build'></div></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";
     }  
 }
+
