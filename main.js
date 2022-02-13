@@ -158,7 +158,10 @@ async function displayRank(rankData){
             return rankToDisplay
         }
     }
-    return "no solo/duo rank"
+    rankToDisplay[0] = "no solo/duo rank"
+    // rankToDisplay[1] = ""
+    // rankToDisplay[2] = ""
+    return rankToDisplay
 }
 
 async function displayRankEmblem(rank){
