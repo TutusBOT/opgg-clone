@@ -10,13 +10,13 @@
   padding: 0.5rem;
   place-self: center;
   display: grid;
-  grid-template-columns: 1.25fr 1.25 1fr 1fr;
+  grid-template-columns: 1.25fr 0.5fr 0.8fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
   width: 50vw;
   border-radius: 1rem;
 }
 .list-of-matches .match .game-mode {
-  grid-column: 1/4;
+  grid-column: 1/5;
   text-align: center;
   justify-self: center;
   width: 100%;
@@ -49,17 +49,45 @@
 .list-of-matches .match .player-info {
   grid-area: 2/1/3/2;
   align-self: center;
+  display: grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+  grid-template-rows: repeat(3, 0.5fr);
+}
+.list-of-matches .match .player-info span {
+  grid-area: 3/1/4/5;
+  justify-self: center;
+}
+.list-of-matches .match .player-info .player-img {
+  grid-area: 1/1/3/2;
+  justify-self: end;
+}
+.list-of-matches .match .player-info .summoner-spell1 {
+  max-width: 25px;
+  grid-area: 2/2/3/3;
+}
+.list-of-matches .match .player-info .summoner-spell2 {
+  max-width: 25px;
+}
+.list-of-matches .match .player-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.list-of-matches .match .player-items img {
+  width: 25px;
+}
+.list-of-matches .match .player-items img:nth-child(-n+3) {
+  align-self: end;
 }
 .list-of-matches .match img {
   width: 50px;
 }
 
 .teamOne {
-  grid-area: 2/3/3/4;
+  grid-area: 2/4/3/5;
 }
 
 .teamTwo {
-  grid-area: 2/4/3/5;
+  grid-area: 2/5/3/6;
 }
 
 .win {
@@ -116,7 +144,7 @@
   }
 }
 .match-info {
-  grid-area: 1/4/2/5;
+  grid-area: 1/5/2/6;
   justify-self: center;
 }
 

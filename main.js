@@ -78,7 +78,6 @@ async function displayMatchData(matchesArray){
     const queueFetch = await fetch("scripts/queues.json")
     // const summoner = document.getElementById('summoner-name').value  po co to pobierać?
     const queueObject = await queueFetch.json()
-    console.log(queueObject);
     let matchinfo = matchesArray.map(match => {
         let matchinfo = match.info
         console.log("match", match)
@@ -209,15 +208,18 @@ async function basicSummonerInfo(result){
 async function summonerGame(result,matchData){
     const fetchSummoner = await fetch("scripts/summoner.json")
     const resultsSummoner = await fetchSummoner.json()
+    const fetchItems = await fetch("scripts/item.json")
+    const resultsItems = await fetchItems.json()
     const arraySummoner = Object.entries(resultsSummoner.data)
-    console.log("summoner spells", resultsSummoner);
-    let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes, usedSummonerSpells
+    const arrayItems = Object.entries(resultsItems.data)
+    console.log(arrayItems);
+    let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes, usedSummonerSpells, boughtItems
     
     for(i = 0; i < matchData.length; i++){
         path = ".match" + i;
         query = document.querySelector(path)
         let summonerSpells = []
-
+        let items = []
         for(l = 0; l < matchData.length; l++){
             if(matchData[i].info.participants[l].summonerName == result.name){
                 let short = matchData[i].info.participants[l]
@@ -258,10 +260,38 @@ async function summonerGame(result,matchData){
                     
                 })
                 usedSummonerSpells = filteredSummonerSpells
+                items.push(short.item0, short.item1, short.item2, short.item3, short.item4, short.item5)
+                console.log(items);
+                let filteredItems = arrayItems.filter(item =>{
+                    let array = []
+                    if(item[0] == items[0]){
+                        array.push(item)
+                    }
+                    else if(item[0] == items[1]){
+                        array.push(item)
+                    }
+                    else if(item[0] == items[2]){
+                        array.push(item)
+                    }
+                    else if(item[0] == items[3]){
+                        array.push(item)
+                    }
+                    else if(item[0] == items[4]){
+                        array.push(item)
+                    }
+                    else if(item[0] == items[5]){
+                        array.push(item)
+                    }
+                    if (array.length) return array
+                })
+                while(filteredItems.length<6){
+                    filteredItems.push([0, {image:{full:"0.png"}}])
+                }
+                boughtItems = filteredItems
+                console.log(boughtItems);
             }
         }
-        console.log("ziemniak", usedSummonerSpells);
-        query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src=images/champion/"+ champion + ".png><img src='images/spells/summoner/"+ usedSummonerSpells[0][1].image.full +"' class='summoner-spell'><img src='images/spells/summoner/"+ usedSummonerSpells[1][1].image.full +"' class='summoner-spell'><div class='player-build'></div></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";
+        query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src='images/champion/"+ champion + ".png' class='player-img'><img src='images/spells/summoner/"+ usedSummonerSpells[0][1].image.full +"' class='summoner-spell1'><img src='images/spells/summoner/"+ usedSummonerSpells[1][1].image.full +"' class='summoner-spell2'><div class='player-build'></div></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='player-items'><img src='images/item/" + boughtItems[0][1].image.full + "'><img src='images/item/" + boughtItems[1][1].image.full + "'><img src='images/item/" + boughtItems[2][1].image.full + "'><img src='images/item/" + boughtItems[3][1].image.full + "'><img src='images/item/" + boughtItems[4][1].image.full + "'><img src='images/item/" + boughtItems[5][1].image.full + "'></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";
     }  
 }
 
