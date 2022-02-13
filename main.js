@@ -225,7 +225,7 @@ async function summonerGame(result,matchData){
                 kills = short.kills
                 deaths = short.deaths
                 assists = short.assists
-                cs = short.totalMinionsKilled
+                cs = short.totalMinionsKilled + short.neutralMinionsKilled
                 duration = matchData[i].info.gameDuration
                 if (!duration % 60) durationMinutes = ':00'
                 else if (duration % 60 < 10) durationMinutes = ":0" + duration % 60
@@ -253,9 +253,8 @@ async function summonerGame(result,matchData){
                     else if(summoner[1].key == summonerSpells[1]){
                         array.push(summoner)
                     }
-                    if(array.length){
-                        return array
-                    }
+                    if (array.length) return array
+
                     
                 })
                 usedSummonerSpells = filteredSummonerSpells
