@@ -1,0 +1,41 @@
+@use "../abstracts/" as *;
+
+.search-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: .5rem;
+    border-radius: $border-radius;
+    background-color: $white;
+    width: 50%;
+    min-width: 300px;
+    height: 1.5em;
+    font-size: 2rem;
+    grid-area: 1 / 1 / 2 / 6;
+    place-self: center;
+    *{
+        font-family: $font-main;
+    }
+    .search-bar-region{
+        background-color: $white;
+        border-right: 1px solid grey;
+        height: 100%;
+        cursor: pointer;
+    }
+    .search-bar-summonername{
+        background-color: $white;
+        width: 100%;
+        padding-inline-start: $padding-small;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        box-shadow: 0 0 0 30px $white inset !important;
+        -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    }
+    .search-bar-button{
+        cursor: pointer;
+        height: 100%;
+    }
+}
