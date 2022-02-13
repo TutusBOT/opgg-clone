@@ -105,8 +105,8 @@ section {
   width: 50vw;
   border-radius: 1rem;
 }
-.list-of-matches .match p {
-  grid-area: 1/1/2/4;
+.list-of-matches .match .game-mode {
+  grid-column: 1/4;
   text-align: center;
 }
 .list-of-matches .match .teamOne,
@@ -120,12 +120,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-.list-of-matches .match .teamOne span p,
-.list-of-matches .match .teamTwo span p {
-  text-align: end;
-  overflow: hidden;
-  word-wrap: none;
 }
 .list-of-matches .match .teamOne img,
 .list-of-matches .match .teamTwo img {
@@ -158,4 +152,28 @@ section {
 }
 .lose:hover {
   background: linear-gradient(90deg, #760d0d, #1d1961);
+}
+
+.match-summonername {
+  text-align: end;
+  position: relative;
+}
+
+.match-summonername:hover .match-summonername-info {
+  display: block;
+}
+
+.match-summonername-info {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  background: #2e2e2e;
+  outline: 1px solid #ededed;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 30ch;
+  padding-inline: 1rem;
+  padding-block: 0.25rem;
+  z-index: 999;
 }/*# sourceMappingURL=style.css.map */

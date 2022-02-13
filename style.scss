@@ -103,8 +103,8 @@ section{
         grid-template-rows: 0.25fr 1fr;
         width: 50vw;
         border-radius: 1rem;
-        p{
-            grid-area: 1/1/2/4;
+        .game-mode{
+            grid-column: 1 / 4;
             text-align: center;
         }
         .teamOne,
@@ -116,11 +116,6 @@ section{
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                p{
-                    text-align: end;
-                    overflow: hidden;
-                    word-wrap: none;
-                }
             }
             img{
                 width:20px;
@@ -167,4 +162,27 @@ section{
             lighten($gradient-red, 2%), 
             lighten($background-lighter, 2%));
     }
+}
+
+.match-summonername{
+    text-align: end;
+    position: relative;
+}
+
+.match-summonername:hover .match-summonername-info{
+    display: block;
+}
+.match-summonername-info{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    background: $grey;
+    outline: 1px solid $white;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 30ch;
+    padding-inline: 1rem;
+    padding-block: .25rem;
+    z-index: 999;
 }

@@ -4,7 +4,7 @@ const lossesParagraph = document.getElementById("losses")
 const totalPlayedParagraph = document.getElementById("total-matches")
 const listOfMatches = document.getElementById("list-of-matches")
 
-const APIKEY = "RGAPI-9f6dd5f4-6908-4c50-af2b-c62ce9bf2bfa"
+const APIKEY = "RGAPI-34c8c358-0581-4a15-9f69-bf3f8501e0ae"
 
 
 
@@ -27,9 +27,9 @@ async function getUserId(){
     const rankDisplayer = await displayRank(basicInfo)
     const matchList = await getMatchId(results.puuid, apiRegion[1])
     const matchData = await getMatchData(matchList, apiRegion[1])
-    const matcheHistory = await displayMatchData(matchData)
-    const Icon = await basicSummonerInfo(results)
-    const SummonerGames = await summonerGame(results,matchData)
+    const matchesHistory = await displayMatchData(matchData)
+    const icon = await basicSummonerInfo(results)
+    const summonerGames = await summonerGame(results,matchData)
 
 
     console.log("list of matches id", matchList);
@@ -84,7 +84,7 @@ async function displayMatchData(matchesArray){
     let matchinfo = matchesArray.map(match => {
         let matchinfo = match.info
         console.log("match", match)
-        listOfMatches.innerHTML += "<li class=''><p></p></li>";
+        listOfMatches.innerHTML += "<li class=''><p class='game-mode'></p></li>";
         return matchinfo
     });
     for(i=0; i<matchesArray.length; i++){
@@ -103,10 +103,11 @@ async function displayMatchData(matchesArray){
             let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"a")
             let champion = matchinfo[i].participants[l].championName;
-            if(summonerName.length > 15){
-                summonerName = summonerName.slice(0, 11)+"..."
+            let summonerNameFormatted = summonerName
+            if(summonerName.length > 10){
+                summonerNameFormatted = summonerName.slice(0, 7)+"..."
             }
-            query.innerHTML += "<span><p>" + summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
+            query.innerHTML += "<span><div class='match-summonername'>" + summonerNameFormatted + "<div class='match-summonername-info'>"+ summonerName +"</div>" + "</div><img src=images/champion/"+champion+ ".png>" +"</span>";
             
         }
  
@@ -116,10 +117,12 @@ async function displayMatchData(matchesArray){
             let summonerName = matchinfo[i].participants[l].summonerName
             let query = document.querySelector("#Team"+i+"b")
             let champion = matchinfo[i].participants[l].championName;
-            if(summonerName.length > 13){
-                summonerName = summonerName.slice(0, 11)+"..."
+            let summonerNameFormatted = summonerName
+            if(summonerName.length > 10){
+                summonerNameFormatted = summonerName.slice(0, 7)+"..."
             }
-            query.innerHTML += "<span><p>" + summonerName + "</p><img src=images/champion/"+champion+ ".png>" +"</span>";
+            query.innerHTML += "<span><div class='match-summonername'>" + summonerNameFormatted + "<div class='match-summonername-info'>"+ summonerName +"</div>" + "</div><img src=images/champion/"+champion+ ".png>" +"</span>";
+
         }
 //         listOfMatches.childNodes[i].innerHTML += "</div>"
 
