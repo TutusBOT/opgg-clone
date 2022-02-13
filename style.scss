@@ -1,16 +1,5 @@
-@use "css/abstracts" as *;
 @use "css/layout";
 @use "css/base" as *;
-
-section{
-    height: 100vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px; 
-}
 
 #basic-info{
     grid-area: 2 / 1 / 4 / 3;

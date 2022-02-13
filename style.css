@@ -161,6 +161,14 @@
   height: 100%;
 }
 
+.container {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -184,16 +192,6 @@ input,
 select {
   border: none;
   outline: none;
-}
-
-section {
-  height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 0.5fr 1fr 1fr 2fr 2fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
 }
 
 #basic-info {
