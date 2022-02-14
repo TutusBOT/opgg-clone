@@ -14,12 +14,10 @@ async function getUserId(){
     listOfMatches.innerHTML = ""
     const apiRegion = determineRegion(region)
 
-
     const response = await fetch("https://"+ apiRegion[0] +".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summoner+"?api_key="+APIKEY)
 
-    if(response.ok != true){
-        console.log("Error");
-        return  
+    if(!response.ok){
+        throw Error(response.statusText);
     }
     console.log(region);
     const results = await response.json()
@@ -98,9 +96,7 @@ async function displayMatchData(matchesArray){
                 summonerNameFormatted = summonerName.slice(0, 7)+"..."
             }
             query.innerHTML += "<span><div class='match-summonername'>" + summonerNameFormatted + "<div class='match-summonername-info'>"+ summonerName +"</div>" + "</div><img src=images/champion/"+champion+ ".png>" +"</span>";
-            
         }
- 
         listOfMatches.childNodes[i].innerHTML += "</div>"
         listOfMatches.childNodes[i].innerHTML += "<div class='teamTwo' id=Team" + i + "b>"
         for(l=5; l<10; l++){
@@ -112,7 +108,6 @@ async function displayMatchData(matchesArray){
                 summonerNameFormatted = summonerName.slice(0, 7)+"..."
             }
             query.innerHTML += "<span><div class='match-summonername'>" + summonerNameFormatted + "<div class='match-summonername-info'>"+ summonerName +"</div>" + "</div><img src=images/champion/"+champion+ ".png>" +"</span>";
-
         }
 
         queueObject.forEach(id =>{
@@ -212,7 +207,6 @@ async function summonerGame(result,matchData){
     const resultsItems = await fetchItems.json()
     const arraySummoner = Object.entries(resultsSummoner.data)
     const arrayItems = Object.entries(resultsItems.data)
-    console.log(arrayItems);
     let path, query, champion, kills, deaths, assists, kda, cs, duration, durationMinutes, usedSummonerSpells, boughtItems
     
     for(i = 0; i < matchData.length; i++){
@@ -261,7 +255,6 @@ async function summonerGame(result,matchData){
                 })
                 usedSummonerSpells = filteredSummonerSpells
                 items.push(short.item0, short.item1, short.item2, short.item3, short.item4, short.item5)
-                console.log(items);
                 let filteredItems = arrayItems.filter(item =>{
                     let array = []
                     if(item[0] == items[0]){
@@ -288,7 +281,6 @@ async function summonerGame(result,matchData){
                     filteredItems.push([0, {image:{full:"0.png"}}])
                 }
                 boughtItems = filteredItems
-                console.log(boughtItems);
             }
         }
         query.innerHTML += "<div class='player-info'><span>" + result.name + " " + "</span><img src='images/champion/"+ champion + ".png' class='player-img'><img src='images/spells/summoner/"+ usedSummonerSpells[0][1].image.full +"' class='summoner-spell1'><img src='images/spells/summoner/"+ usedSummonerSpells[1][1].image.full +"' class='summoner-spell2'><div class='player-build'></div></div><div class='player-stats'><span>" + kills + "/" + deaths + "/" + assists + "</span><span>"+ kda +" KDA</span><span>" + cs + " CS</span></div><div class='player-items'><img src='images/item/" + boughtItems[0][1].image.full + "'><img src='images/item/" + boughtItems[1][1].image.full + "'><img src='images/item/" + boughtItems[2][1].image.full + "'><img src='images/item/" + boughtItems[3][1].image.full + "'><img src='images/item/" + boughtItems[4][1].image.full + "'><img src='images/item/" + boughtItems[5][1].image.full + "'></div><div class='match-info'><span>" + duration + durationMinutes + "</span></div>";

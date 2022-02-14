@@ -1,16 +1,17 @@
 .list-of-matches {
   grid-area: 4/1/6/6;
   display: grid;
-  grid-row-gap: 1rem;
+  grid-row-gap: 0.5rem;
 }
 .list-of-matches li {
   list-style-type: none;
+  outline: 1px solid #ededed;
 }
 .list-of-matches .match {
   padding: 0.5rem;
   place-self: center;
   display: grid;
-  grid-template-columns: 1.25fr 0.5fr 0.8fr 1fr 1fr;
+  grid-template-columns: 1.25fr 0.6fr 0.8fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
   width: 50vw;
   border-radius: 1rem;
@@ -18,7 +19,7 @@
 .list-of-matches .match .game-mode {
   grid-column: 1/5;
   text-align: center;
-  justify-self: center;
+  place-self: center;
   width: 100%;
 }
 .list-of-matches .match .teamOne,
@@ -43,7 +44,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 0.25rem;
   text-align: center;
 }
 .list-of-matches .match .player-info {
@@ -69,11 +70,15 @@
   max-width: 25px;
 }
 .list-of-matches .match .player-items {
+  justify-self: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
 }
 .list-of-matches .match .player-items img {
+  background-color: #211759;
   width: 25px;
+  border-radius: 5px;
 }
 .list-of-matches .match .player-items img:nth-child(-n+3) {
   align-self: end;
@@ -91,17 +96,17 @@
 }
 
 .win {
-  background: linear-gradient(90deg, #1a109a, #211c6d);
+  background: linear-gradient(90deg, #3547a4, #211c6d);
 }
 .win:hover {
-  background: linear-gradient(90deg, #180f8c, #1d1961);
+  background: linear-gradient(90deg, #314299, #1d1961);
 }
 
 .lose {
-  background: linear-gradient(90deg, #840f0f, #211c6d);
+  background: linear-gradient(90deg, #a43535, #211c6d);
 }
 .lose:hover {
-  background: linear-gradient(90deg, #760d0d, #1d1961);
+  background: linear-gradient(90deg, #993131, #1d1961);
 }
 
 .match-summonername {

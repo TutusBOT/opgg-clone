@@ -3,22 +3,23 @@
 .list-of-matches{
     grid-area: 4 / 1 / 6 / 6;
     display: grid;
-    grid-row-gap: 1rem; 
+    grid-row-gap: .5rem; 
     li{
         list-style-type: none;
+        outline: 1px solid $white;
     }
     .match{ 
         padding: .5rem;
         place-self: center;
         display: grid;
-        grid-template-columns: 1.25fr .5fr .8fr 1fr 1fr;
+        grid-template-columns: 1.25fr .6fr .8fr 1fr 1fr;
         grid-template-rows: 0.25fr 1fr;
         width: 50vw;
         border-radius: 1rem;
         .game-mode{
             grid-column: 1 / 5;
             text-align: center;
-            justify-self: center;
+            place-self: center;
             width: 100%;
         }
         .teamOne,
@@ -39,7 +40,7 @@
             grid-area: 2/2/3/3;
             @include flex-center;
             flex-direction: column;
-            row-gap: 1rem;
+            row-gap: .25rem;
             text-align: center;
         }
         .player-info{
@@ -65,10 +66,14 @@
             }
         }
         .player-items{
+            justify-self: center;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: .25rem;
             img{
+                background-color: $background-darker;
                 width: 25px;
+                border-radius: 5px;
                 &:nth-child(-n+3){
                     align-self: end;
                 }
