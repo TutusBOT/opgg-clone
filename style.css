@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1.25fr 0.6fr 0.8fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr;
-  width: 50vw;
+  width: 50%;
   border-radius: 1rem;
 }
 .list-of-matches .match .game-mode {
@@ -85,6 +85,11 @@
 }
 .list-of-matches .match img {
   width: 50px;
+}
+@media (max-width: 1000px) {
+  .list-of-matches .match {
+    width: 95%;
+  }
 }
 
 .teamOne {
