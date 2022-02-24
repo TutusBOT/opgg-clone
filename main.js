@@ -341,24 +341,29 @@ async function summonerGame(result, matchData) {
 					let array = [];
 					if (item[0] == items[0]) {
 						array.push(item);
-					} else if (item[0] == items[1]) {
+					}
+					if (item[0] == items[1]) {
 						array.push(item);
-					} else if (item[0] == items[2]) {
+					}
+					if (item[0] == items[2]) {
 						array.push(item);
-					} else if (item[0] == items[3]) {
+					}
+					if (item[0] == items[3]) {
 						array.push(item);
-					} else if (item[0] == items[4]) {
+					}
+					if (item[0] == items[4]) {
 						array.push(item);
-					} else if (item[0] == items[5]) {
+					}
+					if (item[0] == items[5]) {
 						array.push(item);
 					}
 					if (array.length) return array;
 				});
-
 				while (filteredItems.length < 6) {
 					filteredItems.push([0, { image: { full: "0.png" } }]);
 				}
 				boughtItems = filteredItems;
+				console.log("tescik", boughtItems);
 			}
 		}
 		query.innerHTML +=
