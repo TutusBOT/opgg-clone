@@ -11,7 +11,6 @@ async function getUserId() {
 	let summoner = document.getElementById("summoner-name").value;
 	listOfMatches.innerHTML = "";
 	const apiRegion = determineRegion(region);
-	console.log(`${summoner}`);
 	const response = await fetch(
 		// "https://" +
 		// 	apiRegion[0] +
@@ -21,7 +20,7 @@ async function getUserId() {
 		// 	APIKEY
 		`summonerdata.php?summoner=${encodeURIComponent(summoner)}&region=${
 			apiRegion[0]
-		}`,
+		}&url=.api.riotgames.com/lol/summoner/v4/summoners/by-name/`,
 		{
 			method: "GET",
 		}
@@ -56,12 +55,18 @@ async function getUserId() {
 
 async function getRank(userId, apiRegion) {
 	const response = await fetch(
-		"https://" +
-			apiRegion +
-			".api.riotgames.com/lol/league/v4/entries/by-summoner/" +
-			userId +
-			"?api_key=" +
-			APIKEY
+		`summonerdata.php?summoner=${encodeURIComponent(
+			userId
+		)}&region=${apiRegion}&url=.api.riotgames.com/lol/league/v4/entries/by-summoner/`,
+		{
+			method: "GET",
+		}
+		// "https://" +
+		// 	apiRegion +
+		// 	".api.riotgames.com/lol/league/v4/entries/by-summoner/" +
+		// 	userId +
+		// 	"?api_key=" +
+		// 	APIKEY
 	);
 	const results = await response.json();
 	return results;
@@ -69,6 +74,12 @@ async function getRank(userId, apiRegion) {
 
 async function getMatchId(puuid, apiRegion) {
 	const response = await fetch(
+		// `summonerdata.php?summoner=${encodeURIComponent(
+		// 	"&ids" + puuid
+		// )}&region=${apiRegion}&url=.api.riotgames.com/lol/match/v5/matches/by-puuid/&additional="start=0&count=10"`,
+		// {
+		// 	method: "GET",
+		// }
 		"https://" +
 			apiRegion +
 			".api.riotgames.com/lol/match/v5/matches/by-puuid/" +
@@ -84,12 +95,18 @@ async function getMatchData(matchId, apiRegion) {
 	let response = [];
 	response = await matchId.map((element) => {
 		let matchesArray = processMatchData(
-			"https://" +
-				apiRegion +
-				".api.riotgames.com/lol/match/v5/matches/" +
-				element +
-				"?api_key=" +
-				APIKEY
+			`summonerdata.php?summoner=${encodeURIComponent(
+				element
+			)}&region=${apiRegion}&url=.api.riotgames.com/lol/match/v5/matches/`,
+			{
+				method: "GET",
+			}
+			// "https://" +
+			// 	apiRegion +
+			// 	".api.riotgames.com/lol/match/v5/matches/" +
+			// 	element +
+			// 	"?api_key=" +
+			// 	APIKEY
 		);
 		return matchesArray;
 	});
@@ -335,6 +352,7 @@ async function summonerGame(result, matchData) {
 					}
 					if (array.length) return array;
 				});
+
 				while (filteredItems.length < 6) {
 					filteredItems.push([0, { image: { full: "0.png" } }]);
 				}
