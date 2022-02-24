@@ -337,28 +337,45 @@ async function summonerGame(result, matchData) {
 					short.item4,
 					short.item5
 				);
+
 				let filteredItems = arrayItems.filter((item) => {
-					let array = [];
-					if (item[0] == items[0]) {
-						array.push(item);
-					}
-					if (item[0] == items[1]) {
-						array.push(item);
-					}
-					if (item[0] == items[2]) {
-						array.push(item);
-					}
-					if (item[0] == items[3]) {
-						array.push(item);
-					}
-					if (item[0] == items[4]) {
-						array.push(item);
-					}
-					if (item[0] == items[5]) {
-						array.push(item);
-					}
-					if (array.length) return array;
+					// let array = [];
+					// if (
+					return (
+						item[0] == items[0] ||
+						item[0] == items[1] ||
+						item[0] == items[2] ||
+						item[0] == items[3] ||
+						item[0] == items[4] ||
+						item[0] == items[5]
+					);
+					// ) {
+					// array.push(item);
+					// 	return item;
+					// }
+					// if (item[0] == items[1]) {
+					// 	// array.push(item);
+					// 	return item;
+					// }
+					// if (item[0] == items[2]) {
+					// 	// array.push(item);
+					// 	return item;
+					// }
+					// if (item[0] == items[3]) {
+					// 	// array.push(item);
+					// 	return item;
+					// }
+					// if (item[0] == items[4]) {
+					// 	// array.push(item);
+					// 	return item;
+					// }
+					// if (item[0] == items[5]) {
+					// 	// array.push(item);
+					// 	return item;
+					// }
+					// if (array.length) return array;
 				});
+
 				while (filteredItems.length < 6) {
 					filteredItems.push([0, { image: { full: "0.png" } }]);
 				}
