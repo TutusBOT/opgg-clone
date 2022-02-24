@@ -4,7 +4,7 @@ const lossesParagraph = document.getElementById("losses");
 const totalPlayedParagraph = document.getElementById("total-matches");
 const listOfMatches = document.getElementById("list-of-matches");
 
-const APIKEY = "RGAPI-c154f678-c41b-49f1-a977-9be3b2d4436a";
+// const APIKEY = "RGAPI-c154f678-c41b-49f1-a977-9be3b2d4436a";
 
 async function getUserId() {
 	let region = document.getElementById("region").value;
