@@ -4,7 +4,7 @@ const lossesParagraph = document.getElementById("losses");
 const totalPlayedParagraph = document.getElementById("total-matches");
 const listOfMatches = document.getElementById("list-of-matches");
 
-const APIKEY = "RGAPI-8582aefa-69f4-4b49-99b9-890c970612cc";
+const APIKEY = "RGAPI-c154f678-c41b-49f1-a977-9be3b2d4436a";
 
 async function getUserId() {
 	let region = document.getElementById("region").value;
@@ -74,20 +74,20 @@ async function getRank(userId, apiRegion) {
 
 async function getMatchId(puuid, apiRegion) {
 	let url = ".api.riotgames.com/lol/match/v5/matches/by-puuid/";
-	let additional = "start=0count=10";
+	let additional = "start=0,count=10";
 	const response = await fetch(
-		// `summonerdata.php?summoner=${encodeURIComponent(
-		// 	puuid + "/ids"
-		// )}&region=${apiRegion}&url=${url}&additional=${additional}`,
-		// {
-		// 	method: "GET",
-		// }
-		"https://" +
-			apiRegion +
-			".api.riotgames.com/lol/match/v5/matches/by-puuid/" +
-			puuid +
-			"/ids?start=0&count=10&api_key=" +
-			APIKEY
+		`getmatchid.php?summoner=${encodeURIComponent(
+			puuid
+		)}&region=${apiRegion}&url=${url}`,
+		{
+			method: "GET",
+		}
+		// "https://" +
+		// 	apiRegion +
+		// 	".api.riotgames.com/lol/match/v5/matches/by-puuid/" +
+		// 	puuid +
+		// 	"/ids?start=0&count=10&api_key=" +
+		// 	APIKEY
 	);
 	const results = await response.json();
 	return results;
