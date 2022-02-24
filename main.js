@@ -73,10 +73,12 @@ async function getRank(userId, apiRegion) {
 }
 
 async function getMatchId(puuid, apiRegion) {
+	let url = ".api.riotgames.com/lol/match/v5/matches/by-puuid/";
+	let additional = "start=0count=10";
 	const response = await fetch(
 		// `summonerdata.php?summoner=${encodeURIComponent(
-		// 	"&ids" + puuid
-		// )}&region=${apiRegion}&url=.api.riotgames.com/lol/match/v5/matches/by-puuid/&additional="start=0&count=10"`,
+		// 	puuid + "/ids"
+		// )}&region=${apiRegion}&url=${url}&additional=${additional}`,
 		// {
 		// 	method: "GET",
 		// }
