@@ -349,6 +349,9 @@ async function summonerGame(result, matchData) {
 						item[0] == items[4] ||
 						item[0] == items[5]
 					);
+
+					// FIND TY KURWO JEBANA
+
 					// ) {
 					// array.push(item);
 					// 	return item;
