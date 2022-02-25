@@ -337,50 +337,58 @@ async function summonerGame(result, matchData) {
 					short.item4,
 					short.item5
 				);
+				var filteredItems = [];
+				for (let i = 0; i < arrayItems.length; i++) {
+					for (let l = 0; l < 6; l++) {
+						if (arrayItems[i][0] == items[l]) {
+							filteredItems.push(arrayItems[i]);
+						}
+					}
+				}
+				console.log("Lux", arrayItems[0]);
+				// let filteredItems = arrayItems.filter((item) => {
+				// 	// let array = [];
+				// 	// if (
+				// 	return (
+				// 		item[0] == items[0] ||
+				// 		item[0] == items[1] ||
+				// 		item[0] == items[2] ||
+				// 		item[0] == items[3] ||
+				// 		item[0] == items[4] ||
+				// 		item[0] == items[5]
+				// 	);
 
-				let filteredItems = arrayItems.filter((item) => {
-					// let array = [];
-					// if (
-					return (
-						item[0] == items[0] ||
-						item[0] == items[1] ||
-						item[0] == items[2] ||
-						item[0] == items[3] ||
-						item[0] == items[4] ||
-						item[0] == items[5]
-					);
+				// FIND TY KURWO JEBANA
 
-					// FIND TY KURWO JEBANA
-
-					// ) {
-					// array.push(item);
-					// 	return item;
-					// }
-					// if (item[0] == items[1]) {
-					// 	// array.push(item);
-					// 	return item;
-					// }
-					// if (item[0] == items[2]) {
-					// 	// array.push(item);
-					// 	return item;
-					// }
-					// if (item[0] == items[3]) {
-					// 	// array.push(item);
-					// 	return item;
-					// }
-					// if (item[0] == items[4]) {
-					// 	// array.push(item);
-					// 	return item;
-					// }
-					// if (item[0] == items[5]) {
-					// 	// array.push(item);
-					// 	return item;
-					// }
-					// if (array.length) return array;
-				});
+				// ) {
+				// array.push(item);
+				// 	return item;
+				// }
+				// if (item[0] == items[1]) {
+				// 	// array.push(item);
+				// 	return item;
+				// }
+				// if (item[0] == items[2]) {
+				// 	// array.push(item);
+				// 	return item;
+				// }
+				// if (item[0] == items[3]) {
+				// 	// array.push(item);
+				// 	return item;
+				// }
+				// if (item[0] == items[4]) {
+				// 	// array.push(item);
+				// 	return item;
+				// }
+				// if (item[0] == items[5]) {
+				// 	// array.push(item);
+				// 	return item;
+				// }
+				// if (array.length) return array;
+				// });
 
 				while (filteredItems.length < 6) {
-					filteredItems.push([0, { image: { full: "0.png" } }]);
+					filteredItems.unshift([0, { image: { full: "0.png" } }]);
 				}
 				boughtItems = filteredItems;
 				console.log("tescik", boughtItems);
@@ -407,17 +415,17 @@ async function summonerGame(result, matchData) {
 			" KDA</span><span>" +
 			cs +
 			" CS</span></div><div class='player-items'><img src='images/item/" +
-			boughtItems[0][1].image.full +
-			"'><img src='images/item/" +
-			boughtItems[1][1].image.full +
-			"'><img src='images/item/" +
-			boughtItems[2][1].image.full +
-			"'><img src='images/item/" +
-			boughtItems[3][1].image.full +
+			boughtItems[5][1].image.full +
 			"'><img src='images/item/" +
 			boughtItems[4][1].image.full +
 			"'><img src='images/item/" +
-			boughtItems[5][1].image.full +
+			boughtItems[3][1].image.full +
+			"'><img src='images/item/" +
+			boughtItems[2][1].image.full +
+			"'><img src='images/item/" +
+			boughtItems[1][1].image.full +
+			"'><img src='images/item/" +
+			boughtItems[0][1].image.full +
 			"'></div><div class='match-info'><span>" +
 			duration +
 			durationMinutes +

@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    <title>Op GG clone</title>
-</head>
-<body>
-    <header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="main.js" defer></script>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
+			rel="stylesheet"
+		/>
+		<title>x-ray</title>
+	</head>
+	<body>
+		<header></header>
 
-    </header>
+		<section class="container">
+			<form class="search-bar" onsubmit="getUserId(); return false">
+				<select name="Region" id="region" class="search-bar-region">
+					<option value="EUNE">EUNE</option>
+					<option value="EUW">EUW</option>
+					<option value="NA">NA</option>
+					<option value="RU">RU</option>
+				</select>
 
-    <section class="container">
-        <form class="search-bar" onsubmit="getUserId(); return false">
-            
-            <select name="Region" id="region" class="search-bar-region">
-                <option value="EUNE">EUNE</option>
-                <option value="EUW">EUW</option>
-                <option value="NA">NA</option>
-                <option value="RU">RU</option>
-            </select>
+				<input
+					type="text"
+					id="summoner-name"
+					class="search-bar-summonername"
+					placeholder="Search a summoner"
+				/>
 
-            <input type="text" id="summoner-name" class="search-bar-summonername" placeholder="Search a summoner">
+				<input
+					type="button"
+					value="Search"
+					id="summoner-name-button"
+					class="search-bar-button"
+					onclick="getUserId()"
+				/>
+			</form>
+			<div id="basic-info" class="basic-info">
+				<img src="" id="basic-info-icon" />
+				<p id="basic-info-name"></p>
+				<p id="basic-info-lvl"></p>
+			</div>
 
-            <input type="button" value="Search" id="summoner-name-button" class="search-bar-button" onclick="getUserId()">
-        </form>
-        <div id="basic-info" class="basic-info">
-            <img src="" id="basic-info-icon">
-            <p id="basic-info-name"></p>
-            <p id="basic-info-lvl"></p>
-        </div>
-        
-        <div class="matches-played">
-            <img src="" id="rank-emblem" class="rank-img">
-            <p id="rank"></p>
-            <p id="wins"></p>
-            <p id="losses"></p>
-            <p id="total-matches"></p>
-        </div>
-        <ul id="list-of-matches" class="list-of-matches">
-            
-        </ul>
-    </section>
-            
-    <footer>
- 
-    </footer>
-</body>
+			<div class="matches-played">
+				<img src="" id="rank-emblem" class="rank-img" />
+				<p id="rank"></p>
+				<p id="wins"></p>
+				<p id="losses"></p>
+				<p id="total-matches"></p>
+			</div>
+			<ul id="list-of-matches" class="list-of-matches"></ul>
+		</section>
+
+		<footer></footer>
+	</body>
 </html>
