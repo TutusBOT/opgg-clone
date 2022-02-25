@@ -1,26 +1,26 @@
 @use "../abstracts/" as *;
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: $font-main;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: $font-main;
 }
 
-body{
-    background: $background-darker;
-    color: $white;
-    min-height: 100vh;
-    text-rendering: optimizeSpeed;
+body {
+	background: $background-darker;
+	color: $white;
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
 }
 
-html:focus-within{
-    scroll-behavior: smooth;
+html:focus-within {
+	scroll-behavior: smooth;
 }
 
 button,
 input,
-select{
-    border: none;
-    outline: none;
+select {
+	border: none;
+	outline: none;
 }

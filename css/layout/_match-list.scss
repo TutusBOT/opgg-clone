@@ -1,7 +1,8 @@
 @use "../abstracts" as *;
 
 .list-of-matches {
-	grid-area: 4 / 1 / 6 / 6;
+	grid-column: 1 / 6;
+	grid-row: 3 / 6;
 	display: grid;
 	grid-row-gap: 0.5rem;
 	li {

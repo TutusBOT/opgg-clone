@@ -37,6 +37,7 @@ async function getUserId() {
 	const matchData = await getMatchData(matchList, apiRegion[1]);
 	const matchesHistory = await displayMatchData(matchData);
 	const icon = await basicSummonerInfo(results);
+
 	const summonerGames = await summonerGame(results, matchData);
 
 	console.log("list of matches id", matchList);
@@ -290,6 +291,7 @@ async function summonerGame(result, matchData) {
 	for (i = 0; i < matchData.length; i++) {
 		path = ".match" + i;
 		query = document.querySelector(path);
+		// query.innerHTML = "";
 		let summonerSpells = [];
 		let items = [];
 		for (l = 0; l < matchData.length; l++) {
