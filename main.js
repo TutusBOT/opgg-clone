@@ -5,6 +5,19 @@ const totalPlayedParagraph = document.getElementById("total-matches");
 const listOfMatches = document.getElementById("list-of-matches");
 
 // const APIKEY = "RGAPI-c154f678-c41b-49f1-a977-9be3b2d4436a";
+let dataCheckHelper = 0;
+async function dataCheck() {
+	dataCheckHelper++;
+	if (dataCheckHelper < 2) {
+		try {
+			const a = await getUserId();
+			console.log(a);
+		} catch (e) {
+			alert(e);
+		}
+		dataCheckHelper = 0;
+	}
+}
 
 async function getUserId() {
 	let region = document.getElementById("region").value;

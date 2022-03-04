@@ -18,7 +18,7 @@
 		<header></header>
 
 		<section class="container">
-			<form class="search-bar" onsubmit="getUserId(); return false">
+			<form class="search-bar" onsubmit="dataCheck(); return false">
 				<select name="Region" id="region" class="search-bar-region">
 					<option value="EUNE">EUNE</option>
 					<option value="EUW">EUW</option>
@@ -39,7 +39,7 @@
 					value="Search"
 					id="summoner-name-button"
 					class="search-bar-button"
-					onclick="getUserId()"
+					onclick="dataCheck()"
 				/>
 			</form>
 			<div id="basic-info" class="basic-info">
